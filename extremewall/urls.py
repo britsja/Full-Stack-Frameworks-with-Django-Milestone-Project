@@ -1,11 +1,11 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from home.views import index
-from tickets.views import show_open_tickets
+from tickets import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='home'),
-    path('tickets/', show_open_tickets, name='show_open_tickets')
+    path('tickets/', include('tickets.urls'))
 ]
 
