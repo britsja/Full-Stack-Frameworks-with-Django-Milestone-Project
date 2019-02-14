@@ -9,6 +9,16 @@
         <div class="col-sm-12 text-center">
             <h1>List of open tickets here</h1>
         </div>
+        <div class="tickets col-sm-12">
+            <ul class="list-group">
+                <li class="list-group-item active">Open Tickets</li>
+                {% for ticket in tickets%}
+                <li class="list-group-item"><a href="show_ticket/{{ ticket.id }}">{{ticket.ticketname}}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+
     </div>
 </div>
 
