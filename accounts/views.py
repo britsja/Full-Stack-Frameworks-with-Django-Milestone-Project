@@ -2,14 +2,14 @@ from django.shortcuts import render, reverse, redirect
 from django.contrib import auth, messages
 from accounts.forms import LoginForm, RegistrationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 @login_required
 def logout(request):
     auth.logout(request)
     messages.success(request, "You are logged out")
     return redirect(reverse('login'))
-    
+
 def login(request):
     if request.user.is_authenticated:
         return redirect(reverse('profile'))
@@ -38,11 +38,13 @@ def register(request):
         return redirect('profile')
 
     if request.method == "POST":
-        registration_form = RegistrationForm
+        registration_form = RegistrationForm(request.POST)
         
         if registration_form.is_valid():
             registration_form.save()
             user = auth.authenticate(username = request.POST['username'], password = request.POST['password1'])
+            user_group = Group.objects.get(name='SupportUsers')
+            user_group.user_set.add(user)
 
             if user:
                 auth.login(user=user, request=request)
@@ -59,4 +61,6 @@ def register(request):
 
 def profile(request):
     user = User.objects.get(email=request.user.email)
+    print(type(user))
+    print(user.username)
     return render(request, 'profile.html', {'profile': user})
