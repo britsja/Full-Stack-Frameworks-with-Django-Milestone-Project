@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Ticket_username(models.Model):
     name = models.CharField(max_length=30)
@@ -27,9 +28,9 @@ class Ticket(models.Model):
 class Comments(models.Model):
 
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
-    commentusername = models.CharField(max_length=30)
+    commentusername = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.CharField(max_length=500, blank=False)
     created_date = models.DateField()
 
     def __str__(self):
-        return self.ticket
+        return self.comment

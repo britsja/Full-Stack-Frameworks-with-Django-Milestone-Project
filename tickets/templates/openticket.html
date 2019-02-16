@@ -19,14 +19,17 @@
         </div>
         <div class="ticket col-sm-12 mt-5">
             {% for comment in comments %}
-            <p>{{ comment.commentusername }} said: {{comment.comment }}</p>
+                {% for user in users%}
+                    {% if comment.commentusername_id == user.id %}
+                    <p>{{user.username}} said: {{comment.comment}}</p>
+                    {% endif %}
+                {% endfor %}    
             {% endfor %}
         </div>  
     </div>
     {% if user.is_authenticated %}
     <div class="row">
         <div class="col-sm-12 mt-5">
-            <!-- Figure out how to add ticket id into this button!!!-->
             <a href="{% url 'add_comment' ticket.id %}"> 
             <button type="button" class="btn btn-primary">Add Comment</button>
             </a>
