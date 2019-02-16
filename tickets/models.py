@@ -30,3 +30,6 @@ class Comments(models.Model):
     commentusername = models.CharField(max_length=30)
     comment = models.CharField(max_length=500, blank=False)
     created_date = models.DateField()
+
+    def __str__(self):
+        return self.ticket

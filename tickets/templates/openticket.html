@@ -23,6 +23,16 @@
             {% endfor %}
         </div>  
     </div>
+    {% if user.is_authenticated %}
+    <div class="row">
+        <div class="col-sm-12 mt-5">
+            <!-- Figure out how to add ticket id into this button!!!-->
+            <a href="{% url 'add_comment' ticket.id %}"> 
+            <button type="button" class="btn btn-primary">Add Comment</button>
+            </a>
+        </div>
+    </div>
+    {% endif %}
 </div>
 
 
