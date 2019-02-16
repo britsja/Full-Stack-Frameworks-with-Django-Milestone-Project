@@ -6,9 +6,10 @@ from django.contrib.auth.models import User, Group
 
 @login_required
 def logout(request):
-    auth.logout(request)
-    messages.success(request, "You are logged out")
-    return redirect(reverse('login'))
+    if request.method == 'POST':
+        auth.logout(request)
+        messages.success(request, "You are logged out")
+        return redirect(reverse('home'))
 
 def login(request):
     if request.user.is_authenticated:
@@ -61,6 +62,4 @@ def register(request):
 
 def profile(request):
     user = User.objects.get(email=request.user.email)
-    print(type(user))
-    print(user.username)
     return render(request, 'profile.html', {'profile': user})
