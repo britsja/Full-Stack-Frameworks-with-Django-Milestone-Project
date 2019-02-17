@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, get_list_or_40
 from .models import Ticket, Comments, Ticketcategory
 from .forms import CommentsForm, TicketsForm
 from django.contrib.auth.models import User
+from datetime import datetime
 
 def show_open_tickets(request):
     tickets = Ticket.objects.all()
@@ -27,6 +28,7 @@ def add_comment(request, id):
             comment = form.save(commit=False)
             comment.commentusername = request.user
             comment.ticket = ticket
+            comment.created_date = datetime.now()
             comment.save()
             return redirect(show_ticket, id)
             
@@ -46,9 +48,10 @@ def add_ticket(request):
         if form.is_valid():
             ticket = form.save(commit=False)
             ticket.ticketusername = current_user
+            ticket.created_date = datetime.now()
             ticket.status = True
             ticket.save()
-            return render(request, 'showtickets.html', {'tickets': tickets})
+            return redirect(show_open_tickets)
 
     else:
         form = TicketsForm()

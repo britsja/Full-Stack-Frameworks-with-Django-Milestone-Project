@@ -41,7 +41,7 @@
                 {% for comment in comments %}
                     {% for user in users%}
                         {% if comment.commentusername_id == user.id %}
-                        <p>{{user.username}} said: {{comment.comment}}</p>
+                        <p>At {{comment.created_date}} {{user.username}} said: {{comment.comment}}</p>
                         {% endif %}
                     {% endfor %}    
                 {% endfor %}

@@ -1,24 +1,29 @@
 from django import forms
+from django.forms import Textarea
 from .models import Comments, Ticket
 from django.utils.translation import gettext_lazy as _
 
 class CommentsForm(forms.ModelForm):
     class Meta:
         model = Comments
-        fields = ('comment', 'created_date')
+        fields = {'comment'}
         labels = {
             'comment': _('Your Comment'),
-            'created_date': _('Todays Date'),
         }
 
 class TicketsForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = {'ticketname', 'description', 'category', 'created_date'}
+        fields = {'ticketname', 'description', 'category'}
         labels = {
             'ticketname': _ ('Ticket Title'),
             'description': _('Describe the problem'),
             'category': _('Support Category'),
-            'created_date': _ ('Todays Date')
         }
+
+        widgets = {
+            'description': Textarea(attrs={'rows': 10}),
+        }
+
+        order_fields = ('category', 'ticketname', 'description')
 
