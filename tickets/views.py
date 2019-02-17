@@ -17,7 +17,6 @@ def show_ticket(request, id):
 
 def add_comment(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
-    comments = get_list_or_404(Comments, ticket = ticket.id)
     current_user = request.user
     
 
@@ -27,11 +26,9 @@ def add_comment(request, id):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.commentusername = request.user
+            comment.ticket = ticket
             comment.save()
-            tickets = Ticket.objects.all()
-            comments = Comments.objects.filter(ticket = id).values()
-            users = User.objects.all()
-            return render(request, "openticket.html",{'ticket': ticket, 'comments': comments, 'users': users})
+            return redirect(show_ticket, id)
             
     else:
         form = CommentsForm(instance=ticket)

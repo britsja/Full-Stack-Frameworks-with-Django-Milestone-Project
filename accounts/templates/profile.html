@@ -10,6 +10,46 @@
             <h1> Welcome to your profile page {{profile.username}} </h1>
         </div>    
     </div>
+    <div class="row">
+        <div class="col-sm-12 text-center mt-5">
+            <h1> Here are your open tickets: </h1>
+        </div>
+        <div class="col-sm-12 text-center mt-5">
+            {% for ticket in tickets %}
+                {% if ticket.ticketusername == user%}
+                    {% if ticket.status == True %}
+                    <p>{{ticket}} created on {{ticket.created_date}}</p>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center mt-5">
+            <h1> Here are your closed tickets: </h1>
+        </div>
+        <div class="col-sm-12 text-center mt-5">
+            {% for ticket in tickets %}
+                {% if ticket.ticketusername == user%}
+                {% if ticket.status == False %}
+                    <p>{{ticket}} created on {{ticket.created_date}}</p>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center mt-5">
+            <h1> Here are your comments on tickets: </h1>
+        </div>
+        <div class="col-sm-12 text-center mt-5">
+            {% for comment in comments %}
+                {% if comment.commentusername == user%}
+                <p>On ticket {{comment.ticket}} you posted: {{comment.comment}}</p>
+                {% endif %}
+            {% endfor %}
+        </div>   
+    </div>
 </div>
 
 {% endblock %}

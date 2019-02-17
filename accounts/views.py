@@ -3,6 +3,7 @@ from django.contrib import auth, messages
 from accounts.forms import LoginForm, RegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
+from tickets.models import Ticket, Comments
 
 @login_required
 def logout(request):
@@ -62,4 +63,6 @@ def register(request):
 
 def profile(request):
     user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {'profile': user})
+    tickets = Ticket.objects.all()
+    comments = Comments.objects.all()
+    return render(request, 'profile.html', {'profile': user, 'tickets': tickets, 'comments': comments})
