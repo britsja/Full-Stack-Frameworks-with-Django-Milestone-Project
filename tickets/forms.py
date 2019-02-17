@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comments
+from .models import Comments, Ticket
 from django.utils.translation import gettext_lazy as _
 
 class CommentsForm(forms.ModelForm):
@@ -12,4 +12,14 @@ class CommentsForm(forms.ModelForm):
             'created_date': _('Todays Date'),
         }
 
-      
+class TicketsForm(forms.ModelForm):
+    class Meta:
+        model = Ticket
+        fields = {'ticketname', 'description', 'category', 'created_date'}
+        labels = {
+            'ticketname': _ ('Ticket Title'),
+            'category': _('Support Category'),
+            'description': _('Describe the problem'),
+            'created_date': _ ('Todays Date')
+        }
+

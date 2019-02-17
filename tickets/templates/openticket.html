@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-sm-12 text-center">
-            <h1>Displaying Ticket Number: </h1>
+            <h1>Displaying Ticket Number: {{ticket.id}}</h1>
         </div>
         <div class="ticket col-sm-12 mt-5 text-center">
             <h2>Ticket name: {{ ticket.ticketname }}</h2>
@@ -15,16 +15,23 @@
     </div>
     <div class="row">
         <div class="col-sm-12 text-center mt-5">
+            <h3>Ticket Description: {{ ticket.description }}</h3>
+        </div>
+        <div class="col-sm-12 text-center mt-5">
             <h3>Ticket Comments: </h3>
         </div>
         <div class="ticket col-sm-12 mt-5">
-            {% for comment in comments %}
-                {% for user in users%}
-                    {% if comment.commentusername_id == user.id %}
-                    <p>{{user.username}} said: {{comment.comment}}</p>
-                    {% endif %}
-                {% endfor %}    
-            {% endfor %}
+            {% if comments %}
+                {% for comment in comments %}
+                    {% for user in users%}
+                        {% if comment.commentusername_id == user.id %}
+                        <p>{{user.username}} said: {{comment.comment}}</p>
+                        {% endif %}
+                    {% endfor %}    
+                {% endfor %}
+            {% else %}
+            <p>There are no comments on this ticket yet</p>
+            {% endif %}
         </div>  
     </div>
     {% if user.is_authenticated %}

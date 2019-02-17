@@ -15,7 +15,7 @@ class Ticketcategory(models.Model):
 
 class Ticket(models.Model):
 
-    ticketusername = models.ForeignKey(Ticket_username, on_delete=models.CASCADE)
+    ticketusername = models.ForeignKey(User, on_delete=models.CASCADE)
     ticketname = models.CharField(max_length=100, blank=False)
     description = models.CharField(max_length=500, blank=False)
     category = models.ForeignKey(Ticketcategory,null=True, on_delete=models.CASCADE)

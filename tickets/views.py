@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, get_list_or_404
-from .models import Ticket, Comments
-from .forms import CommentsForm
+from .models import Ticket, Comments, Ticketcategory
+from .forms import CommentsForm, TicketsForm
 from django.contrib.auth.models import User
 
 def show_open_tickets(request):
@@ -22,7 +22,6 @@ def add_comment(request, id):
 
     if request.method == "POST":
         form = CommentsForm(request.POST or None)
-        print(form)
 
         if form.is_valid():
             comment = form.save(commit=False)
@@ -38,3 +37,22 @@ def add_comment(request, id):
 
     return render(request, "addcomment.html",{'form': form})
    
+def add_ticket(request):
+    category = Ticketcategory.objects.all()
+    current_user = request.user
+    tickets = Ticket.objects.all()
+
+    if request.method == "POST":
+        form = TicketsForm(request.POST or None)
+
+        if form.is_valid():
+            ticket = form.save(commit=False)
+            ticket.ticketusername = current_user
+            ticket.status = True
+            ticket.save()
+            return render(request, 'showtickets.html', {'tickets': tickets})
+
+    else:
+        form = TicketsForm()
+
+    return render(request, "addticket.html", {'form': form, 'category' : category})
