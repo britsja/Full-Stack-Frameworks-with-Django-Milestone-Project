@@ -11,8 +11,9 @@ def show_ticket(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     comments = Comments.objects.filter(ticket = id).values()
     users = User.objects.all()
+    current_user = request.user
     
-    return render(request, "openticket.html",{'ticket': ticket, 'comments': comments, 'users': users})
+    return render(request, "openticket.html",{'ticket': ticket, 'comments': comments, 'users': users, 'current_user': current_user})
 
 def add_comment(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
@@ -40,10 +41,10 @@ def add_comment(request, id):
 def add_ticket(request):
     category = Ticketcategory.objects.all()
     current_user = request.user
-    tickets = Ticket.objects.all()
 
     if request.method == "POST":
         form = TicketsForm(request.POST or None)
+        
 
         if form.is_valid():
             ticket = form.save(commit=False)
@@ -56,3 +57,19 @@ def add_ticket(request):
         form = TicketsForm()
 
     return render(request, "addticket.html", {'form': form, 'category' : category})
+
+def close_ticket(request, id):
+    ticket = get_object_or_404(Ticket, pk=id)
+    ticket.status = False
+    ticket.save()
+
+    tickets = Ticket.objects.all()
+    return redirect(show_open_tickets)
+
+def reopen_ticket(request, id):
+    ticket = get_object_or_404(Ticket, pk=id)
+    ticket.status = True
+    ticket.save()
+
+    tickets = Ticket.objects.all()
+    return redirect(show_open_tickets)

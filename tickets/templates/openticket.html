@@ -10,8 +10,24 @@
             <h1>Displaying Ticket Number: {{ticket.id}}</h1>
         </div>
         <div class="ticket col-sm-12 mt-5 text-center">
-            <h2>Ticket name: {{ ticket.ticketname }}</h2>
-        </div>  
+            <h2>Ticket name: {{ ticket.ticketname }} - Posted by {{ticket.ticketusername}}</h2>
+        </div>
+        {% if ticket.ticketusername == current_user%}
+            {% if ticket.status == True%}
+            <div class="col-sm-12 mt-5 mb-5 text-center">
+                <a href="{% url 'close_ticket' ticket.id %}"> 
+                <button type="button" class="btn btn-primary">Close Ticket</button>
+                </a>
+            </div>
+            {% endif %}
+            {% if ticket.status == False%}
+            <div class="col-sm-12 mt-5 mb-5 text-center">
+                <a href="{% url 'reopen_ticket' ticket.id %}"> 
+                <button type="button" class="btn btn-primary">Reopen this Ticket?</button>
+                </a>
+            </div>
+            {% endif %}
+        {% endif %}  
     </div>
     <div class="row">
         <div class="col-sm-12 text-center mt-5">
@@ -35,13 +51,15 @@
         </div>  
     </div>
     {% if user.is_authenticated %}
-    <div class="row">
-        <div class="col-sm-12 mt-5">
-            <a href="{% url 'add_comment' ticket.id %}"> 
-            <button type="button" class="btn btn-primary">Add Comment</button>
-            </a>
+        {% if ticket.status == True%}
+        <div class="row">
+            <div class="col-sm-12 mt-5 mb-5 text-center">
+                <a href="{% url 'add_comment' ticket.id %}"> 
+                <button type="button" class="btn btn-primary">Add Comment</button>
+                </a>
+            </div>
         </div>
-    </div>
+        {% endif %}
     {% endif %}
 </div>
 

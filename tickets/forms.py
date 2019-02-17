@@ -18,8 +18,8 @@ class TicketsForm(forms.ModelForm):
         fields = {'ticketname', 'description', 'category', 'created_date'}
         labels = {
             'ticketname': _ ('Ticket Title'),
-            'category': _('Support Category'),
             'description': _('Describe the problem'),
+            'category': _('Support Category'),
             'created_date': _ ('Todays Date')
         }
 
