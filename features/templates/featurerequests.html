@@ -17,7 +17,7 @@
         <tbody>
             {% for feature in features%}
                 {% if feature.status == True %}  
-                <tr onclick="window.location='open_feature/{{ feature.id }}';">
+                <tr onclick="window.location='open_feature/{{ feature.id }}';" class="pointer hover-highlight">
                     <th scope="row">{{ feature.id }}</th>
                     <td>{{ feature.featurename }}</td>
                     <td>{{ feature.featureusername }}</td>

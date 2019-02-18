@@ -18,3 +18,11 @@
     background: rgba(0,0,0,0.8);
     
 }
+
+.pointer {
+    cursor: pointer;
+}
+
+.hover-highlight:hover {
+    background-color: #00bc8c !important;
+  }
