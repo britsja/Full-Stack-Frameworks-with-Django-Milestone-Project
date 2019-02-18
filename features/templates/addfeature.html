@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load bootstrap_tags %}
+
+{% block title %}Submit a Feature Request{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center mt-5">
+            <h1>Please enter the details of your requested feature:</h1>
+        </div>
+        <div class="tickets col-sm-12 mt-5">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | as_bootstrap }}
+                <button type="submit" class="btn btn-info">Submit</button>
+            </form>
+        </div>
+        
+
+    </div>
+</div>
+
+
+{% endblock  %}

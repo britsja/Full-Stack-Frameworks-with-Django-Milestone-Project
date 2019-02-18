@@ -13,3 +13,13 @@ class Features(models.Model):
 
     def __str__(self):
         return self.featurename
+
+class FeatureComments(models.Model):
+
+    feature = models.ForeignKey(Features, on_delete=models.CASCADE)
+    commentusername = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=500, blank=False)
+    created_date = models.DateTimeField(default=datetime.now, blank=True)
+
+    def __str__(self):
+        return self.comment

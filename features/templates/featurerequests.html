@@ -4,7 +4,31 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Request ID</th>
+            <th scope="col">Request Name</th>
+            <th scope="col">By User</th>
+            <th scope="col">Date Requested</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for feature in features%}
+                {% if feature.status == True %}  
+                <tr onclick="window.location='open_feature/{{ feature.id }}';">
+                    <th scope="row">{{ feature.id }}</th>
+                    <td>{{ feature.featurename }}</td>
+                    <td>{{ feature.featureusername }}</td>
+                    <td>{{ feature.created_date }}</td>
+                </tr>
+            </a>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <!--
     <div class="row">
         <div class="col-sm-12 text-center mt-5">
             <h1>List of Feature Requests</h1>
@@ -20,9 +44,10 @@
             </ul>
         </div>
     </div>
+    -->
     <div class="row">
         <div class="col-sm-12 text-center mt-5">
-            <a href="#"> 
+            <a href="{% url 'add_feature' %}"> 
             <button type="button" class="btn btn-primary">Add a Feature Request</button>
             </a>
         </div>
@@ -34,9 +59,9 @@
         <div class="tickets col-sm-12 mt-5 mb-5">
             <ul class="list-group">
                 <li class="list-group-item active">Closed Requests</li>
-                {% for featur in features%}
+                {% for feature in features%}
                     {% if feature.status == False %}
-                    <li class="list-group-item"><a href="#">{{feature.featurename}}</a></li>
+                    <li class="list-group-item"><a href="open_feature/{{ feature.id }}">{{feature.featurename}}</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>

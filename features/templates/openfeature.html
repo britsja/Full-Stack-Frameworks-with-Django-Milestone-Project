@@ -6,6 +6,26 @@
 
 <div class="container">
     <div class="row mt-5">
+            <div class="col-sm-12 text-center">
+                {% if user.is_staff %}
+                    {% if feature.status == True%}
+                        <h1>Staff options:</h1>
+                        <a href="{% url 'close_feature' feature.id %}"> 
+                        <button type="button" class="btn btn-primary">Close this Feature Request</button>
+                        </a>
+                        </div>
+                    {% endif %}
+                    {% if feature.status == False%}
+                        <h1>Staff options:</h1>
+                        <a href="{% url 'reopen_feature' feature.id %}"> 
+                        <button type="button" class="btn btn-primary">Reopen this Feature Request</button>
+                        </a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+    </div>
+    <div class="row mt-5">
         <div class="col-sm-12 text-center">
             <h1>Displaying Feature Request Number: {{feature.id}}</h1>
         </div>
@@ -35,11 +55,24 @@
             {% endif %}
         </div>  
     </div>
+    <div class="container">
     {% if user.is_authenticated %}
         {% if feature.status == True%}
         <div class="row">
             <div class="col-sm-12 mt-5 mb-5 text-center">
-                <a href="#"> 
+                <a href="{% url 'upvote_request' feature.id %}"> 
+                <button type="button" class="btn btn-primary">Upvote this Feature</button>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+    </div>
+    {% if user.is_authenticated %}
+        {% if feature.status == True%}
+        <div class="row">
+            <div class="col-sm-12 mt-5 mb-5 text-center">
+                <a href="{% url 'add_feature_comment' feature.id %}"> 
                 <button type="button" class="btn btn-primary">Add Comment</button>
                 </a>
             </div>
