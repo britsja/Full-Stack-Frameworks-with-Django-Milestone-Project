@@ -1,0 +1,15 @@
+from django.db import models
+from django.contrib.auth.models import User
+from datetime import datetime
+
+class Features(models.Model):
+
+    featureusername = models.ForeignKey(User, on_delete=models.CASCADE)
+    featurename = models.CharField(max_length=100, blank=False)
+    description = models.CharField(max_length=500, blank=False)
+    created_date = models.DateTimeField(default=datetime.now, blank=True)
+    status = models.BooleanField(blank=False, default=False)
+    upvotes = models.IntegerField()
+
+    def __str__(self):
+        return self.featurename

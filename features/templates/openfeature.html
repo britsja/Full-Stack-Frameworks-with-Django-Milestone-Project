@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}ExtremeWall Feature{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-12 text-center">
+            <h1>Displaying Feature Request Number: {{feature.id}}</h1>
+        </div>
+        <div class="ticket col-sm-12 mt-5 text-center">
+            <h2>Feature name: {{ feature.featurename }} - Posted by {{feature.featureusername}}</h2>
+            <h3>Feature Votes: {{ feature.upvotes }}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center mt-5">
+            <h3>Feature Description: {{ feature.description }}</h3>
+        </div>
+        <div class="col-sm-12 text-center mt-5">
+            <h3>Feature Comments: </h3>
+        </div>
+        <div class="ticket col-sm-12 mt-5">
+            {% if comments %}
+                {% for comment in comments %}
+                    {% for user in users%}
+                        {% if comment.commentusername_id == user.id %}
+                        <p>At {{comment.created_date}} {{user.username}} said: {{comment.comment}}</p>
+                        {% endif %}
+                    {% endfor %}    
+                {% endfor %}
+            {% else %}
+            <p>There are no comments on this ticket yet</p>
+            {% endif %}
+        </div>  
+    </div>
+    {% if user.is_authenticated %}
+        {% if feature.status == True%}
+        <div class="row">
+            <div class="col-sm-12 mt-5 mb-5 text-center">
+                <a href="#"> 
+                <button type="button" class="btn btn-primary">Add Comment</button>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+
+
+{% endblock  %}
