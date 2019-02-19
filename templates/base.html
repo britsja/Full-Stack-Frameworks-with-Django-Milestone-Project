@@ -24,12 +24,28 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'home' %}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'show_open_tickets' %}">Open Tickets</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Tickets
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'show_open_tickets' %}">Show Open Tickets</a>
+                        <a class="dropdown-item" href="{% url 'show_closed_tickets' %}">Show Closed Tickets</a>
+                        <a class="dropdown-item" href="{% url 'add_ticket' %}">Create a Support Tickets</a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add_ticket' %}">Create Ticket</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Features
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'show_open_features' %}">Show Feature Request</a>
+                        <a class="dropdown-item" href="{% url 'closed_features' %}">Show Closed Requests</a>
+                        <a class="dropdown-item" href="{% url 'add_feature' %}">Create a Feature Request</a>
+                    </div>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'show_open_features' %}">Feature Requests</a>
                 </li>
@@ -47,14 +63,27 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'home' %}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'show_open_tickets' %}">Open Tickets</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Tickets
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'show_open_tickets' %}#">Show Open Tickets</a>
+                        <a class="dropdown-item" href="#">Show Closed Tickets</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item disabled" href="{% url 'add_ticket' %}">Log in to Create Support Tickets</a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Create Ticket</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'show_open_features' %}">Feature Requests</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Features
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'show_open_features' %}">Show Feature Request</a>
+                        <a class="dropdown-item" href="{% url 'closed_features' %}">Show Closed Requests</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item disabled" href="{% url 'add_feature' %}">Log in to Create a Feature Request</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'register' %}">Register</a>

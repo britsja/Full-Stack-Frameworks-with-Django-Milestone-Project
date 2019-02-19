@@ -9,5 +9,6 @@ urlpatterns = [
     path('upvote_request/<id>', views.upvote_request, name="upvote_request"),
     path('close_feature/<id>', views.close_feature, name="close_feature"),
     path('reopen_feature/<id>', views.reopen_feature, name="reopen_feature"),
+    path('closed_features/', views.closed_features, name="closed_features"),
     
 ]

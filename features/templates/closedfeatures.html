@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}ExtremeWall Closed Feature Requests{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Request ID</th>
+            <th scope="col">Request Name</th>
+            <th scope="col">By User</th>
+            <th scope="col">Date Requested</th>
+            <th scope="col">Date Closed/Completed</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for feature in features%}
+                {% if feature.status == False %}  
+                <tr onclick="window.location='../open_feature/{{ feature.id }}';" class="pointer hover-highlight">
+                    <th scope="row">{{ feature.id }}</th>
+                    <td>{{ feature.featurename }}</td>
+                    <td>{{ feature.featureusername }}</td>
+                    <td>{{ feature.created_date }}</td>
+                    <td>{{ feature.closed_date }}</td>
+                </tr>
+            </a>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</div>
+
+
+{% endblock  %}

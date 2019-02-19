@@ -8,4 +8,5 @@ urlpatterns = [
     path('add_ticket', views.add_ticket, name="add_ticket" ),
     path('close_ticket/<id>', views.close_ticket, name="close_ticket"),
     path('reopen_ticket/<id>', views.reopen_ticket, name="reopen_ticket"),
+    path('show_closed_tickets/', views.show_closed_tickets, name="show_closed_tickets")
 ]

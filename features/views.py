@@ -80,3 +80,7 @@ def reopen_feature(request, id):
     feature.save()
 
     return redirect(show_open_features)
+
+def closed_features(request):
+    features = Features.objects.all()
+    return render(request, 'closedfeatures.html', {'features': features})

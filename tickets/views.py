@@ -75,3 +75,7 @@ def reopen_ticket(request, id):
 
     tickets = Ticket.objects.all()
     return redirect(show_open_tickets)
+
+def show_closed_tickets(request):
+    tickets = Ticket.objects.all()
+    return render(request, 'closedtickets.html', {'tickets': tickets})

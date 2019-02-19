@@ -54,21 +54,6 @@
             </a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12 text-center mt-5">
-            <h1>List of Closed Feature Requests</h1>
-        </div>
-        <div class="tickets col-sm-12 mt-5 mb-5">
-            <ul class="list-group">
-                <li class="list-group-item active">Closed Requests</li>
-                {% for feature in features%}
-                    {% if feature.status == False %}
-                    <li class="list-group-item"><a href="open_feature/{{ feature.id }}">{{feature.featurename}}</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
 </div>
 
 
