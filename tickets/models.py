@@ -22,6 +22,7 @@ class Ticket(models.Model):
     category = models.ForeignKey(Ticketcategory,null=True, on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=datetime.now, blank=True)
     status = models.BooleanField(blank=False, default=False)
+    closed_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.ticketname

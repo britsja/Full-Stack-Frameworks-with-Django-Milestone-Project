@@ -61,6 +61,7 @@ def add_ticket(request):
 def close_ticket(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     ticket.status = False
+    ticket.closed_date = datetime.now()
     ticket.save()
 
     tickets = Ticket.objects.all()
@@ -69,6 +70,7 @@ def close_ticket(request, id):
 def reopen_ticket(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     ticket.status = True
+    ticket.closed_date = None
     ticket.save()
 
     tickets = Ticket.objects.all()

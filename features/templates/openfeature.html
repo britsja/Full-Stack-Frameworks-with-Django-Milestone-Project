@@ -29,6 +29,11 @@
         <div class="col-sm-12 text-center">
             <h1>Displaying Feature Request Number: {{feature.id}}</h1>
         </div>
+        {% if feature.status == False%}
+        <div class="col-sm-12 text-center">
+            <h1>Feature closed at: {{feature.closed_date}}</h1>
+        </div>
+        {% endif %}
         <div class="ticket col-sm-12 mt-5 text-center">
             <h2>Feature name: {{ feature.featurename }} - Posted by {{feature.featureusername}}</h2>
             <h3>Feature Votes: {{ feature.upvotes }}</h3>

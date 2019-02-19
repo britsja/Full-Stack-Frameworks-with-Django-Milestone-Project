@@ -31,7 +31,7 @@
         <div class="col-sm-12 text-center mt-5">
             <h1>List of closed tickets</h1>
         </div>
-        <div class="tickets col-sm-12 mt-5 mb-5">
+        <div class="tickets col-sm-12 mt-5 mb-5 reveal">
             <ul class="list-group">
                 <li class="list-group-item active">Closed Tickets</li>
                 {% for ticket in tickets%}
@@ -44,5 +44,8 @@
     </div>
 </div>
 
+<script>
+    ScrollReveal().reveal('.reveal', { delay: 100});
+</script>
 
 {% endblock  %}

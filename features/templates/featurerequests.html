@@ -12,6 +12,7 @@
             <th scope="col">Request Name</th>
             <th scope="col">By User</th>
             <th scope="col">Date Requested</th>
+            <th scope="col">Upvotes</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
                     <td>{{ feature.featurename }}</td>
                     <td>{{ feature.featureusername }}</td>
                     <td>{{ feature.created_date }}</td>
+                    <td>{{ feature.upvotes }}</td>
                 </tr>
             </a>
                 {% endif %}

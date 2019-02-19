@@ -33,6 +33,11 @@
         <div class="col-sm-12 text-center mt-5">
             <h3>Ticket Description: {{ ticket.description }}</h3>
         </div>
+        {% if ticket.status == False%}
+        <div class="col-sm-12 text-center">
+            <h1>Ticket closed at: {{ticket.closed_date}}</h1>
+        </div>
+        {% endif %}
         <div class="col-sm-12 text-center mt-5">
             <h3>Ticket Comments: </h3>
         </div>

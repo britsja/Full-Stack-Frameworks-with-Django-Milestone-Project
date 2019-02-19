@@ -68,6 +68,7 @@ def upvote_request(request, id):
 def close_feature(request, id):
     feature = get_object_or_404(Features, pk=id)
     feature.status = False
+    feature.closed_date = datetime.now()
     feature.save()
 
     return redirect(show_open_features)
@@ -75,6 +76,7 @@ def close_feature(request, id):
 def reopen_feature(request, id):
     feature = get_object_or_404(Features, pk=id)
     feature.status = True
+    feature.closed_date = None
     feature.save()
 
     return redirect(show_open_features)

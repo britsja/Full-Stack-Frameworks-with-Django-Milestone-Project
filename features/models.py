@@ -10,6 +10,7 @@ class Features(models.Model):
     created_date = models.DateTimeField(default=datetime.now, blank=True)
     status = models.BooleanField(blank=False, default=False)
     upvotes = models.IntegerField()
+    closed_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.featurename
