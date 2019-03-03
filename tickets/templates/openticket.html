@@ -63,7 +63,33 @@
                 {% for comment in comments %}
                     {% for user in users%}
                         {% if comment.commentusername_id == user.id %}
-                        <p>At {{comment.created_date}} {{user.username}} said: {{comment.comment}}</p>
+                            {% if forloop.parentloop.counter|divisibleby:2 %}
+                               <div class="card mb-2 comments">
+                                    {% if user in staff %}
+                                    <div class="card-header bg-danger">
+                                    {% else %}
+                                    <div class="card-header bg-primary">
+                                    {% endif %}                              
+                                    {{user.username}} on {{comment.created_date}}
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">{{comment.comment}}</li>
+                                    </ul>
+                                </div>
+                            {% else %}
+                                <div class="card mb-2 comments">
+                                    {% if user in staff %}
+                                    <div class="card-header bg-danger">
+                                    {% else %}
+                                    <div class="card-header bg-info">
+                                    {% endif %}                            
+                                    {{user.username}} on {{comment.created_date}}
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">{{comment.comment}}</li>
+                                    </ul>
+                                </div>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}    
                 {% endfor %}

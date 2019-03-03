@@ -16,10 +16,11 @@ def show_open_tickets(request):
 def show_ticket(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     comments = Comments.objects.filter(ticket = id).values()
+    staff = User.objects.filter(is_staff=True)
     users = User.objects.all()
     current_user = request.user
     
-    return render(request, "openticket.html",{'ticket': ticket, 'comments': comments, 'users': users, 'current_user': current_user})
+    return render(request, "openticket.html",{'ticket': ticket, 'comments': comments, 'users': users, 'current_user': current_user, 'staff': staff})
 
 def add_comment(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
