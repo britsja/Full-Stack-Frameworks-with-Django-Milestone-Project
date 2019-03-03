@@ -58,13 +58,6 @@ def add_feature(request):
 
     return render(request, "addfeature.html", {'form': form})
 
-def upvote_request(request, id):
-    feature = get_object_or_404(Features, pk=id)
-    feature.upvotes += 1
-    feature.save()
-
-    return redirect(show_feature, id)
-
 def close_feature(request, id):
     feature = get_object_or_404(Features, pk=id)
     feature.status = False
@@ -84,3 +77,11 @@ def reopen_feature(request, id):
 def closed_features(request):
     features = Features.objects.all()
     return render(request, 'closedfeatures.html', {'features': features})
+
+    
+def upvote_request(request, id):
+    feature = get_object_or_404(Features, pk=id)
+    feature.upvotes += 1
+    feature.save()
+
+    return redirect(show_feature, id)

@@ -14,8 +14,9 @@
                 <thead>
                     <tr class="bg-primary">
                         <th scope="col">Ticket ID</th>
-                        <th scope="col">Ticket Title</th>
                         <th scope="col">By User</th>
+                        <th scope="col">Ticket Title</th>
+                         <th scope="col">Category</th>
                         <th scope="col">Date Requested</th>
                         <th scope="col">Comments</th>
                     </tr>
@@ -25,8 +26,9 @@
                         {% if ticket.status == True %}  
                         <tr onclick="window.location='show_ticket/{{ ticket.id }}';" class="pointer hover-highlight">
                             <th scope="row">{{ ticket.id }}</th>
-                            <td>{{ ticket.ticketname }}</td>
                             <td>{{ ticket.ticketusername }}</td>
+                            <td>{{ ticket.ticketname }}</td>
+                            <td>{{ ticket.category }}</td>
                             <td>{{ ticket.created_date }}</td>
                             <td>{{ ticket.commentcount }}</td>
                         </tr>
