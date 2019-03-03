@@ -7,54 +7,56 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-sm-12 text-center">
-            <h1>Displaying Ticket Number: {{ticket.id}}</h1>
-        </div>
-        <div class="ticket col-sm-12 mt-5 text-center">
-            <h2>Ticket name: {{ ticket.ticketname }} - Posted by {{ticket.ticketusername}}</h2>
+            <div class="card text-center">
+                <div class="card-header">
+                    Ticket Number: {{ticket.id}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ ticket.ticketname }}</h5>
+                    <p class="card-text">{{ ticket.description }}</p>
+                    <!-- Give button option if user owns ticket or is staff -->
+                    <!-- Staff check -->
+                    {% if user.is_staff%}
+                        {% if ticket.status == True%}
+                            <a href="{% url 'close_ticket' ticket.id %}"> 
+                                <button type="button" class="btn btn-primary">Close Ticket</button>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'reopen_ticket' ticket.id %}"> 
+                                <button type="button" class="btn btn-primary">Reopen Ticket</button>
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                    <!-- Ticket Owner check -->
+                    {% if ticket.ticketusername == current_user and not user.is_staff %}
+                        {% if ticket.status == True%}
+                        <div class="col-sm-12 mt-5 mb-2 text-center">
+                            <a href="{% url 'close_ticket' ticket.id %}"> 
+                            <button type="button" class="btn btn-primary">Close Ticket</button>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if ticket.status == False%}
+                        <div class="col-sm-12 mt-5 mb-2 text-center">
+                            <a href="{% url 'reopen_ticket' ticket.id %}"> 
+                            <button type="button" class="btn btn-primary">Reopen Ticket</button>
+                            </a>
+                        </div>
+                        {% endif %}
+                    {% endif %} 
+                </div>
+                <div class="card-footer text-muted">
+                    Ticket Created by {{ticket.ticketusername}} on {{ ticket.created_date }}<br/>
+                    {% if ticket.closed_date %}
+                    Ticket Closed {{ ticket.closed_date }}
+                    {% endif %}
+                </div>
+            </div>
         </div>
 
-        {% if user.is_staff %}
-            {% if ticket.status == True%}
-                <div class="col-sm-12 mt-5 mb-5 text-center">
-                    <a href="{% url 'close_ticket' ticket.id %}"> 
-                    <button type="button" class="btn btn-primary">Close Ticket</button>
-                    </a>
-                </div>
-            {% else %}
-                <div class="col-sm-12 mt-5 mb-5 text-center">
-                    <a href="{% url 'reopen_ticket' ticket.id %}"> 
-                    <button type="button" class="btn btn-primary">Reopen Ticket</button>
-                    </a>
-                </div>
-            {% endif %}
-        {% endif %}
-
-        {% if ticket.ticketusername == current_user%}
-            {% if ticket.status == True%}
-            <div class="col-sm-12 mt-5 mb-5 text-center">
-                <a href="{% url 'close_ticket' ticket.id %}"> 
-                <button type="button" class="btn btn-primary">Close Ticket</button>
-                </a>
-            </div>
-            {% endif %}
-            {% if ticket.status == False%}
-            <div class="col-sm-12 mt-5 mb-5 text-center">
-                <a href="{% url 'reopen_ticket' ticket.id %}"> 
-                <button type="button" class="btn btn-primary">Reopen this Ticket?</button>
-                </a>
-            </div>
-            {% endif %}
-        {% endif %}  
+        
     </div>
     <div class="row">
-        <div class="col-sm-12 text-center mt-5">
-            <h3>Ticket Description: {{ ticket.description }}</h3>
-        </div>
-        {% if ticket.status == False%}
-        <div class="col-sm-12 text-center">
-            <h1>Ticket closed at: {{ticket.closed_date}}</h1>
-        </div>
-        {% endif %}
         <div class="col-sm-12 text-center mt-5">
             <h3>Ticket Comments: </h3>
         </div>
@@ -66,28 +68,40 @@
                             {% if forloop.parentloop.counter|divisibleby:2 %}
                                <div class="card mb-2 comments">
                                     {% if user in staff %}
-                                    <div class="card-header bg-danger">
+                                        <div class="card-header bg-danger">
+                                            {{user.username}} (EW Staff) on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
                                     {% else %}
-                                    <div class="card-header bg-primary">
+                                        <div class="card-header bg-primary">
+                                            {{user.username}} on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
                                     {% endif %}                              
-                                    {{user.username}} on {{comment.created_date}}
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">{{comment.comment}}</li>
-                                    </ul>
+                                    
                                 </div>
                             {% else %}
                                 <div class="card mb-2 comments">
                                     {% if user in staff %}
-                                    <div class="card-header bg-danger">
+                                        <div class="card-header bg-danger">
+                                            {{user.username}} (EW Staff) on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
                                     {% else %}
-                                    <div class="card-header bg-info">
+                                        <div class="card-header bg-info">
+                                            {{user.username}} on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
                                     {% endif %}                            
-                                    {{user.username}} on {{comment.created_date}}
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">{{comment.comment}}</li>
-                                    </ul>
+                                    
                                 </div>
                             {% endif %}
                         {% endif %}

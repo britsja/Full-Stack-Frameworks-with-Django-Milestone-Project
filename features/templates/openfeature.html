@@ -6,43 +6,55 @@
 
 <div class="container">
     <div class="row mt-5">
-            <div class="col-sm-12 text-center">
-                {% if user.is_staff %}
-                    {% if feature.status == True%}
-                        <h1>Staff options:</h1>
-                        <a href="{% url 'close_feature' feature.id %}"> 
-                        <button type="button" class="btn btn-primary">Close this Feature Request</button>
-                        </a>
-                        </div>
+        <div class="col-sm-12 text-center">
+            <div class="card text-center">
+                <div class="card-header">
+                    Request Number: {{feature.id}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ feature.featurename }}</h5>
+                    <p class="card-text">{{ feature.description }}</p>
+                    <!-- Give button option if user owns feature request or is staff -->
+                    <!-- Staff check -->
+                    {% if user.is_staff%}
+                        {% if feature.status == True%}
+                            <a href="{% url 'close_feature' feature.id %}"> 
+                                <button type="button" class="btn btn-primary">Close Feature Request</button>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'reopen_feature' feature.id %}"> 
+                                <button type="button" class="btn btn-primary">Reopen Feature Request</button>
+                            </a>
+                        {% endif %}
                     {% endif %}
-                    {% if feature.status == False%}
-                        <h1>Staff options:</h1>
-                        <a href="{% url 'reopen_feature' feature.id %}"> 
-                        <button type="button" class="btn btn-primary">Reopen this Feature Request</button>
-                        </a>
+                    <!-- Ticket Owner check -->
+                    {% if feature.featureusername == current_user and not user.is_staff %}
+                        {% if feature.status == True%}
+                        <div class="col-sm-12 mt-5 mb-2 text-center">
+                            <a href="{% url 'close_feature' feature.id %}"> 
+                            <button type="button" class="btn btn-primary">Close Feature Request</button>
+                            </a>
                         </div>
+                        {% endif %}
+                        {% if feature.status == False%}
+                        <div class="col-sm-12 mt-5 mb-2 text-center">
+                            <a href="{% url 'reopen_feature' feature.id %}"> 
+                            <button type="button" class="btn btn-primary">Reopen Feature Request</button>
+                            </a>
+                        </div>
+                        {% endif %}
+                    {% endif %} 
+                </div>
+                <div class="card-footer text-muted">
+                    Feature Requested by {{feature.featureusername}} on {{ feature.created_date }}<br/>
+                    {% if feature.closed_date %}
+                    Feature Completed on {{ feature.closed_date }}
                     {% endif %}
-                {% endif %}
+                </div>
             </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-sm-12 text-center">
-            <h1>Displaying Feature Request Number: {{feature.id}}</h1>
-        </div>
-        {% if feature.status == False%}
-        <div class="col-sm-12 text-center">
-            <h1>Feature closed at: {{feature.closed_date}}</h1>
-        </div>
-        {% endif %}
-        <div class="ticket col-sm-12 mt-5 text-center">
-            <h2>Feature name: {{ feature.featurename }} - Posted by {{feature.featureusername}}</h2>
-            <h3>Feature Votes: {{ feature.upvotes }}</h3>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 text-center mt-5">
-            <h3>Feature Description: {{ feature.description }}</h3>
-        </div>
         <div class="col-sm-12 text-center mt-5">
             <h3>Feature Comments: </h3>
         </div>
@@ -51,7 +63,45 @@
                 {% for comment in comments %}
                     {% for user in users%}
                         {% if comment.commentusername_id == user.id %}
-                        <p>At {{comment.created_date}} {{user.username}} said: {{comment.comment}}</p>
+                            {% if forloop.parentloop.counter|divisibleby:2 %}
+                               <div class="card mb-2 comments">
+                                    {% if user in staff %}
+                                        <div class="card-header bg-danger">
+                                            {{user.username}} (EW Staff) on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
+                                    {% else %}
+                                        <div class="card-header bg-primary">
+                                            {{user.username}} on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
+                                    {% endif %}                              
+                                    
+                                </div>
+                            {% else %}
+                                <div class="card mb-2 comments">
+                                    {% if user in staff %}
+                                        <div class="card-header bg-danger">
+                                            {{user.username}} (EW Staff) on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
+                                    {% else %}
+                                        <div class="card-header bg-info">
+                                            {{user.username}} on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
+                                    {% endif %}                            
+                                    
+                                </div>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}    
                 {% endfor %}
