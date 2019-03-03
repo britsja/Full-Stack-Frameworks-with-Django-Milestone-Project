@@ -6,6 +6,11 @@ from datetime import datetime
 
 def show_open_tickets(request):
     tickets = Ticket.objects.all()
+    
+    for ticket in tickets:
+        comments = Comments.objects.filter(ticket = ticket.id).values()
+        ticket.commentcount = comments.count()
+
     return render(request, 'showtickets.html', {'tickets': tickets})
 
 def show_ticket(request, id):
@@ -78,4 +83,9 @@ def reopen_ticket(request, id):
 
 def show_closed_tickets(request):
     tickets = Ticket.objects.all()
+
+    for ticket in tickets:
+        comments = Comments.objects.filter(ticket = ticket.id).values()
+        ticket.commentcount = comments.count()
+
     return render(request, 'closedtickets.html', {'tickets': tickets})

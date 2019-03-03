@@ -5,14 +5,14 @@
 {% block content %}
 
 <div class="container mt-5">
-    <table class="table table-striped">
+    <table class="table table-striped table-responsive-sm">
         <thead>
-            <tr>
-            <th scope="col">Request ID</th>
-            <th scope="col">Request Name</th>
-            <th scope="col">By User</th>
-            <th scope="col">Date Requested</th>
-            <th scope="col">Upvotes</th>
+            <tr class="bg-primary">
+                <th scope="col">Request ID</th>
+                <th scope="col">Request Name</th>
+                <th scope="col">By User</th>
+                <th scope="col">Date Requested</th>
+                <th scope="col">Upvotes</th>
             </tr>
         </thead>
         <tbody>
@@ -30,30 +30,21 @@
             {% endfor %}
         </tbody>
     </table>
-    <!--
-    <div class="row">
-        <div class="col-sm-12 text-center mt-5">
-            <h1>List of Feature Requests</h1>
+    {% if user.is_authenticated %}
+        <div class="row">
+            <div class="col-sm-12 text-center mt-5">
+                <a href="{% url 'add_feature' %}"> 
+                <button type="button" class="btn btn-primary">Add a Feature Request</button>
+                </a>
+            </div>
         </div>
-        <div class="tickets col-sm-12 mt-5">
-            <ul class="list-group">
-                <li class="list-group-item active">Open Requests</li>
-                {% for feature in features%}
-                    {% if feature.status == True %}
-                    <li class="list-group-item"><a href="open_feature/{{ feature.id }}">{{feature.featurename}}</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+    {% else %}
+        <div class="row">
+            <div class="col-sm-12 text-center mt-5">
+                <p>You need to be <a href="{% url 'login' %}">logged in</a> to create feature requests</p>
+            </div>
         </div>
-    </div>
-    -->
-    <div class="row">
-        <div class="col-sm-12 text-center mt-5">
-            <a href="{% url 'add_feature' %}"> 
-            <button type="button" class="btn btn-primary">Add a Feature Request</button>
-            </a>
-        </div>
-    </div>
+    {% endif %}  
 </div>
 
 
