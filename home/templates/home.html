@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}ExtremeWall Support{% endblock %}
 
 {% block content %}
@@ -7,9 +9,37 @@
 <section id="home">
     <div class="container-fluid dark-overlay">
         <div class="row">
-            <div class="col-sm-12 text-center mt-5">
+            <div class="col-sm-12 text-center mt-5 mb-5">
                 <h1>Welcome to Extremewall Firewall Support</h1>
                 <p>This firewall is safer than the great wall of Trump - <cite title="client">Harry Styles (Jan 2019)</cite></p>
+                <a href="#" role="button" class="btn btn-danger mt-5">Download Extremewall Today!</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center mt-5">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-1">Voted best open source Firewall 2017</p>
+                    <footer class="blockquote-footer">Firewall Format Magazine</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="protectnetwork">
+    <div class="container-fluid light-grey network">
+        <div class="row">
+            <div class="col-sm-4 offset-sm-3 text-light mt-5 text-center">
+                <h3 class="mb-3 text-danger">Protect your network</h3>
+                <p>
+                    Extremewall uses the latest AI technology to monitor your network, identify threats and interrupt any connection attempts
+                    not deemed suitable based on your settings. Extremewall has access to the collective "hive mind" intelligence of EW Enterprises
+                    which enables global identification of attacks and countermeasures. 
+                    In a nutshell, Extremewall acts like the Borg of Star Trek with one single goal - Stopping cyber attacks on your network!
+                </p>
+            </div>
+            <div class="col-sm-4 text-light mt-5 text-center">
+                <img class="protectnetwork-image" src="{% static 'img/cyborg.png' %}" class="img-fluid" alt="Responsive image">
             </div>
         </div>
     </div>
