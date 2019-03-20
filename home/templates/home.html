@@ -48,10 +48,10 @@
 <section id="systems">
     <div class="container-fluid bg-white hardware">
         <div class="row">
-            <div class="col-sm-4 offset-sm-1 text-light mt-5 mb-5 text-center">
-                <img class="protectnetwork-image" src="{% static 'img/hardware.png' %}" class="img-fluid" alt="Responsive image">
+            <div class="col-sm-4 offset-sm-1 text-light mt-2 mb-3 text-center">
+                <img class="systems-image" src="{% static 'img/hardware.png' %}" class="img-fluid" alt="Responsive image">
             </div>
-            <div class="col-sm-4 text-light mt-5 mb-5">
+            <div class="col-sm-4 text-light mt-5 mb-3">
                 <h3 class="mb-3 text-danger">Hardware Requirements</h3>
                 <p>The minimum hardware requirements for Extremewall V1.2 are:</p>
                 <ul>
@@ -61,6 +61,42 @@
                     <li> 2 Network Cards (Wireless and USB supported)</li>
                     <li> Installation Medium (USB or CD)</li>
                 </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="support">
+    <div class="container-fluid light-grey getsupport">
+        <div class="row">
+            <div class="col-sm-4 offset-sm-3 text-light mt-5 text-center">
+                <h3 class="mb-3 text-danger">Extremewall Support</h3>
+                <p>
+                    You can log a <a href="{% url 'show_open_tickets' %}">support ticket </a>with the Extremewall Support staff to assist with any support queries you might have.
+                    We endeavour to attend to all support queries within 24 hours.
+                </p>
+                <p>You need to be <a href="{% url 'login' %}">logged in</a> to create a support request ticket.</p>
+            </div>
+            <div class="col-sm-4 text-light mt-5 text-center">
+                <a href="{% url 'show_open_tickets' %}">
+                    <img class="support-image" src="{% static 'img/ticket.png' %}" class="img-fluid" alt="Responsive image">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="features">
+    <div class="container-fluid bg-white getfeature">
+        <div class="row">
+            <div class="col-sm-4 offset-sm-1 text-light mt-5 mb-3 text-center">
+                <img class="feature-image" src="{% static 'img/feature.png' %}" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col-sm-4 text-light mt-5 mb-3 text-center">
+                <h3 class="mb-3 text-danger">Request a Feature</h3>
+                <p>At Extremewall, we value your input and suggestions. You can <a href="{% url 'show_open_features' %}">request a feature</a> from our developers to be implemented in Extremewall.</p>
+                <p>If you are in a rush, you can purchase additional upvotes to ensure we implement your feature request next.</p>
+                <p>You need to be <a href="{% url 'login' %}">logged in</a> to create a new feature request.</p>
             </div>
         </div>
     </div>

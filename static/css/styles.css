@@ -27,8 +27,24 @@
     min-height: 400px;
 }
 
+.getsupport {
+    min-height: 400px;
+}
+
 .protectnetwork-image {
     max-height: 250px;
+}
+
+.systems-image {
+    max-height: 300px;
+}
+
+.support-image {
+    max-height: 200px;
+}
+
+.feature-image {
+    max-height: 200px;
 }
 
 .light-grey {
