@@ -1,3 +1,8 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+
 #home {
     position: relative;
     min-height: 500px;
@@ -15,20 +20,7 @@
     left: 0;
     min-height: 500px;
     width: 100%;
-    background: rgba(0,0,0,0.8);
-    
-}
-
-.network {
-    min-height: 400px;
-}
-
-.hardware {
-    min-height: 400px;
-}
-
-.getsupport {
-    min-height: 400px;
+    background: rgba(0,0,0,0.8);    
 }
 
 .protectnetwork-image {
@@ -36,15 +28,22 @@
 }
 
 .systems-image {
-    max-height: 300px;
+    max-height: 200px;
 }
 
 .support-image {
-    max-height: 200px;
+    max-height: 150px;
 }
 
 .feature-image {
-    max-height: 200px;
+    max-height: 150px;
+}
+
+.page-footer {
+    min-height: 50px;
+    position: absolute;
+    bottom: 0;
+
 }
 
 .light-grey {
