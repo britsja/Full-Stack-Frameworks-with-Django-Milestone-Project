@@ -13,8 +13,11 @@ def show_feature(request, id):
     comments = FeatureComments.objects.filter(feature = id).values()
     users = User.objects.all()
     current_user = request.user
+    voted = False
+    if request.session.get('voted', False):
+        voted = True
 
-    return render(request, "openfeature.html",{'feature': feature, 'users': users, 'current_user': current_user, 'comments': comments})
+    return render(request, "openfeature.html",{'feature': feature, 'users': users, 'current_user': current_user, 'comments': comments, 'voted': voted})
 
 def add_feature_comment(request, id):
     feature = get_object_or_404(Features, pk=id)
@@ -76,12 +79,17 @@ def reopen_feature(request, id):
 
 def closed_features(request):
     features = Features.objects.all()
+
     return render(request, 'closedfeatures.html', {'features': features})
 
     
 def upvote_request(request, id):
-    feature = get_object_or_404(Features, pk=id)
-    feature.upvotes += 1
-    feature.save()
+    if request.session.get('voted', False):
+        return
+    else:
+        feature = get_object_or_404(Features, pk=id)
+        feature.upvotes += 1
+        feature.save()
+        request.session['voted'] = True
 
     return redirect(show_feature, id)

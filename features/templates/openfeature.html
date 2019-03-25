@@ -9,7 +9,7 @@
         <div class="col-sm-12 text-center">
             <div class="card text-center">
                 <div class="card-header">
-                    Request Number: {{feature.id}}
+                    Request Number: {{feature.id}}     -     Feature Upvotes: {{feature.upvotes}}
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ feature.featurename }}</h5>
@@ -113,13 +113,15 @@
     <div class="container">
     {% if user.is_authenticated %}
         {% if feature.status == True%}
-        <div class="row">
-            <div class="col-sm-12 mt-5 mb-5 text-center">
-                <a href="{% url 'upvote_request' feature.id %}"> 
-                <button type="button" class="btn btn-primary">Upvote this Feature</button>
-                </a>
+            {% if voted == False %}
+            <div class="row">
+                <div class="col-sm-12 mt-5 mb-5 text-center">
+                    <a href="{% url 'upvote_request' feature.id %}"> 
+                    <button type="button" class="btn btn-primary">Upvote this Feature</button>
+                    </a>
+                </div>
             </div>
-        </div>
+            {% endif %}
         {% endif %}
     {% endif %}
     </div>
