@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% block title %}Cart Content{% endblock %}
+{% block content %}
+
+<div class="container">
+    {% for item in cart_items %}
+    <h3>{{item.feature.featurename}}</h3>
+    {% endfor %}
+</div>
+
+{% endblock %}
