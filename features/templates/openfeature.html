@@ -54,6 +54,29 @@
             </div>
         </div>
     </div>
+    <!-- Add to cart for feature upvotes purchase -->
+    {% if user.is_authenticated %}
+        {% if feature.status == True%}
+            <div class="row">
+                <div class="col-sm-12 text-center mt-5">
+                    <h3>Purchase upvotes:</h3>
+                    <p>You can purchase additional upvotes to boost this features priority in getting implemented. Upvotes boost costs $0.1 per vote and sold in quantities of 1000 votes</p>
+                </div>
+                <div class="col-sm-12 text-center mt-3">
+                    <form method="post" action="{% url 'add_cart' feature.id %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input name='quantity' type="number" min="1" max="100" class="form-control" placeholder="Quantity in thousands (Maximum is 100)" required>
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit">Add votes</button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        {% endif %}
+    {% endif %}
+
     <div class="row">
         <div class="col-sm-12 text-center mt-5">
             <h3>Feature Comments: </h3>

@@ -9,7 +9,7 @@ def add_cart(request, id):
     cart[id] = cart.get(id, quantity)
 
     request.session['cart'] = cart
-    return redirect(reverse('index'))
+    return render(request, "cart.html")
 
 def edit_cart(request, id):
     quantity = int(request.POST.get('quantity'))
@@ -21,7 +21,7 @@ def edit_cart(request, id):
         cart.pop(id)
 
     request.session['cart'] = cart
-    return redirect(reverse('show_cart'))
+    return render(request, "cart.html")
 
 
 
