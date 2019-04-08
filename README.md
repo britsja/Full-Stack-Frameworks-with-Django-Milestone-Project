@@ -16,3 +16,4 @@ https://pixabay.com/vectors/cogwheel-gear-gearwheel-cog-145804/
 https://pixabay.com/illustrations/cloud-security-internet-technology-3461414/
 
 
+Recover from laptop crash last week, trying to sync github local recovery with online
