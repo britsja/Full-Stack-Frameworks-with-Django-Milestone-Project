@@ -1,0 +1,120 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/darkly.bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    {% block head_js %}
+    {% endblock head_js %}    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="{% url 'home' %}">ExtremeWall</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Tickets
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'show_open_tickets' %}">Show Open Tickets</a>
+                        <a class="dropdown-item" href="{% url 'show_closed_tickets' %}">Show Closed Tickets</a>
+                        <a class="dropdown-item" href="{% url 'add_ticket' %}">Create a Support Tickets</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Features
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'show_open_features' %}">Show Feature Request</a>
+                        <a class="dropdown-item" href="{% url 'closed_features' %}">Show Closed Requests</a>
+                        <a class="dropdown-item" href="{% url 'add_feature' %}">Create a Feature Request</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'show_open_features' %}">Feature Requests</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">Logout</a>
+                    <form action="{% url 'logout' %}" method="POST" id="logout">
+                        {% csrf_token %}
+                        <input type="hidden">
+                    </form>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'show_cart' %}">Cart</a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Tickets
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'show_open_tickets' %}#">Show Open Tickets</a>
+                        <a class="dropdown-item" href="{% url 'show_closed_tickets' %}">Show Closed Tickets</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item disabled" href="{% url 'add_ticket' %}">Log in to Create Support Tickets</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Features
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'show_open_features' %}">Show Feature Request</a>
+                        <a class="dropdown-item" href="{% url 'closed_features' %}">Show Closed Requests</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item disabled" href="{% url 'add_feature' %}">Log in to Create a Feature Request</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                {% endif %}
+            </ul>        
+        </div>
+    </nav>
+
+    {% block content %}
+    
+    {% endblock content %}
+
+    <footer class="container-fluid page-footer bg-dark d-flex justify-content-center align-items-center">
+        <div class="row align-items-center">
+            <div class="col-sm-12">
+                <p class="align-middle">Footer</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/scrollreveal"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+</body>
+</html>

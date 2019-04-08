@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}ExtremeWall Support{% endblock %}
+
+{% block content %}
+
+<section id="home">
+    <div class="container-fluid dark-overlay">
+        <div class="row">
+            <div class="col-sm-12 text-center mt-5 mb-5">
+                <h1>Welcome to Extremewall Firewall Support</h1>
+                <p>This firewall is safer than the great wall of Trump - <cite title="client">Harry Styles (Jan 2019)</cite></p>
+                <a href="#" role="button" class="btn btn-danger mt-5">Download Extremewall Today!</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center mt-5">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-1">Voted best open source Firewall 2017</p>
+                    <footer class="blockquote-footer">Firewall Format Magazine</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="protectnetwork">
+    <div class="container-fluid light-grey network">
+        <div class="row flex-grow-1 pt-5 pb-5">
+            <div class="col-sm-4 offset-sm-3 text-light my-auto text-center pt-5 pb-5">
+                <h3 class="mb-3 text-danger">Protect your network</h3>
+                <p>
+                    Extremewall uses the latest AI technology to monitor your network, identify threats and interrupt any connection attempts
+                    not deemed suitable based on your settings. Extremewall has access to the collective "hive mind" intelligence of EW Enterprises
+                    which enables global identification of attacks and countermeasures. 
+                    In a nutshell, Extremewall acts like the Borg of Star Trek with a collective mind and one single goal to potential attacks - To be assimilated!
+                </p>
+            </div>
+            <div class="col-sm-4 text-light mt-5 text-center pt-3">
+                <img class="protectnetwork-image" src="{% static 'img/cyborg.png' %}" class="img-fluid" alt="Responsive image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="systems">
+    <div class="container-fluid bg-white hardware">
+        <div class="row flex-grow-1 pt-5 pb-5">
+            <div class="col-sm-4 offset-sm-1 text-light mt-5 mb-3 text-center">
+                <img class="systems-image" src="{% static 'img/hardware.png' %}" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col-sm-4 text-light mt-5 mb-3">
+                <h3 class="mb-3 text-danger">Hardware Requirements</h3>
+                <p>The minimum hardware requirements for Extremewall V1.2 are:</p>
+                <ul>
+                    <li> 1 GHZ CPU (Intel or AMD)</li>
+                    <li> 4 GB of RAM</li>
+                    <li> 8GB disk drive (More is better for log files)</li>
+                    <li> 2 Network Cards (Wireless and USB supported)</li>
+                    <li> Installation Medium (USB or CD)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="support">
+    <div class="container-fluid light-grey getsupport">
+        <div class="row flex-grow-1 pt-5 pb-5">
+            <div class="col-sm-4 offset-sm-3 text-light text-center mt-5 mb-5">
+                <h3 class="mb-3 text-danger">Extremewall Support</h3>
+                <p>
+                    You can log a <a href="{% url 'show_open_tickets' %}">support ticket </a>with the Extremewall Support staff to assist with any support queries you might have.
+                    We endeavour to attend to all support queries within 24 hours.
+                </p>
+                <p>You need to be <a href="{% url 'login' %}">logged in</a> to create a support request ticket.</p>
+            </div>
+            <div class="col-sm-4 text-light text-center mt-5 mb-5">
+                <a href="{% url 'show_open_tickets' %}">
+                    <img class="support-image" src="{% static 'img/ticket.png' %}" class="img-fluid" alt="Responsive image">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="features">
+    <div class="container-fluid bg-white getfeature">
+        <div class="row flex-grow-1 pt-5 pb-5">
+            <div class="col-sm-4 offset-sm-1 text-light mt-5 mb-5 text-center pt-4 pb-4">
+                <img class="feature-image" src="{% static 'img/firewallfeature.png' %}" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col-sm-4 text-light mt-5 mb-5 text-center pb-4">
+                <h3 class="mb-3 text-danger">Request an EW Firewall Feature</h3>
+                <p>At Extremewall, we value your input and suggestions. You can <a href="{% url 'show_open_features' %}">request a feature</a> from our developers to be implemented in Extremewall.</p>
+                <p>If you are in a rush, you can purchase additional upvotes to ensure we implement your feature request next.</p>
+                <p>You need to be <a href="{% url 'login' %}">logged in</a> to create a new feature request.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock  %}
+

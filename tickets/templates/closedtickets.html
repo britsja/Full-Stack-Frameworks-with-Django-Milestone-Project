@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}ExtremeWall Open Ticket{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center mt-5">
+            <h1>List of closed tickets</h1>
+        </div>
+        <div class="tickets col-sm-12 mt-5 mb-5">
+            <table class="table table-striped table-responsive-sm">
+                <thead>
+                    <tr class="bg-primary">
+                        <th scope="col">Ticket ID</th>
+                        <th scope="col">By User</th>
+                        <th scope="col">Ticket Title</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date Requested</th>
+                        <th scope="col">Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in tickets%}
+                        {% if ticket.status == False %}  
+                        <tr onclick="window.location='../show_ticket/{{ ticket.id }}';" class="pointer hover-highlight">
+                            <th scope="row">{{ ticket.id }}</th>
+                            <td>{{ ticket.ticketusername }}</td>
+                            <td>{{ ticket.ticketname }}</td>
+                            <td>{{ ticket.category }}</td>
+                            <td>{{ ticket.created_date }}</td>
+                            <td>{{ ticket.commentcount }}</td>
+                        </tr>
+                    </a>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    ScrollReveal().reveal('.reveal', { delay: 100});
+</script>
+
+{% endblock  %}

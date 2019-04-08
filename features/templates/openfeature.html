@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}ExtremeWall Feature{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-12 text-center">
+            <div class="card text-center">
+                <div class="card-header">
+                    Request Number: {{feature.id}}     -     Feature Upvotes: {{feature.upvotes}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ feature.featurename }}</h5>
+                    <p class="card-text">{{ feature.description }}</p>
+                    <!-- Give button option if user owns feature request or is staff -->
+                    <!-- Staff check -->
+                    {% if user.is_staff%}
+                        {% if feature.status == True%}
+                            <a href="{% url 'close_feature' feature.id %}"> 
+                                <button type="button" class="btn btn-primary">Close Feature Request</button>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'reopen_feature' feature.id %}"> 
+                                <button type="button" class="btn btn-primary">Reopen Feature Request</button>
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                    <!-- Ticket Owner check -->
+                    {% if feature.featureusername == current_user and not user.is_staff %}
+                        {% if feature.status == True%}
+                        <div class="col-sm-12 mt-5 mb-2 text-center">
+                            <a href="{% url 'close_feature' feature.id %}"> 
+                            <button type="button" class="btn btn-primary">Close Feature Request</button>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if feature.status == False%}
+                        <div class="col-sm-12 mt-5 mb-2 text-center">
+                            <a href="{% url 'reopen_feature' feature.id %}"> 
+                            <button type="button" class="btn btn-primary">Reopen Feature Request</button>
+                            </a>
+                        </div>
+                        {% endif %}
+                    {% endif %} 
+                </div>
+                <div class="card-footer text-muted">
+                    Feature Requested by {{feature.featureusername}} on {{ feature.created_date }}<br/>
+                    {% if feature.closed_date %}
+                    Feature Completed on {{ feature.closed_date }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add to cart for feature upvotes purchase -->
+    {% if user.is_authenticated %}
+        {% if feature.status == True%}
+            <div class="row">
+                <div class="col-sm-12 text-center mt-5">
+                    <h3>Purchase upvotes:</h3>
+                    <p>You can purchase additional upvotes to boost this features priority in getting implemented. Upvotes boost costs $0.1 per vote and sold in quantities of 1000 votes</p>
+                </div>
+                <div class="col-sm-12 text-center mt-3">
+                    <form method="post" action="{% url 'add_cart' feature.id %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input name='quantity' type="number" min="1" max="100" class="form-control" placeholder="Quantity in thousands (Maximum is 100)" required>
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit">Add votes</button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-sm-12 text-center mt-5">
+            <h3>Feature Comments: </h3>
+        </div>
+        <div class="ticket col-sm-12 mt-5">
+            {% if comments %}
+                {% for comment in comments %}
+                    {% for user in users%}
+                        {% if comment.commentusername_id == user.id %}
+                            {% if forloop.parentloop.counter|divisibleby:2 %}
+                               <div class="card mb-2 comments">
+                                    {% if user in staff %}
+                                        <div class="card-header bg-danger">
+                                            {{user.username}} (EW Staff) on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
+                                    {% else %}
+                                        <div class="card-header bg-primary">
+                                            {{user.username}} on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
+                                    {% endif %}                              
+                                    
+                                </div>
+                            {% else %}
+                                <div class="card mb-2 comments">
+                                    {% if user in staff %}
+                                        <div class="card-header bg-danger">
+                                            {{user.username}} (EW Staff) on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
+                                    {% else %}
+                                        <div class="card-header bg-info">
+                                            {{user.username}} on {{comment.created_date}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{comment.comment}}</li>
+                                        </ul>
+                                    {% endif %}                            
+                                    
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}    
+                {% endfor %}
+            {% else %}
+            <p>There are no comments on this ticket yet</p>
+            {% endif %}
+        </div>  
+    </div>
+    <div class="container">
+    {% if user.is_authenticated %}
+        {% if feature.status == True%}
+            {% if voted == False %}
+            <div class="row">
+                <div class="col-sm-12 mt-5 mb-5 text-center">
+                    <a href="{% url 'upvote_request' feature.id %}"> 
+                    <button type="button" class="btn btn-primary">Upvote this Feature</button>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    </div>
+    {% if user.is_authenticated %}
+        {% if feature.status == True%}
+        <div class="row">
+            <div class="col-sm-12 mt-5 mb-5 text-center">
+                <a href="{% url 'add_feature_comment' feature.id %}"> 
+                <button type="button" class="btn btn-primary">Add Comment</button>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+
+
+{% endblock  %}
