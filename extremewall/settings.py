@@ -26,7 +26,7 @@ SECRET_KEY = '0j$wa0hlcn36nq7q1c9q6x7*&c&ba*a^$)a*!di5c+5glj2u+z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['project4-janbrits.c9users.io']
 
 
 # Application definition
