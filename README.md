@@ -15,4 +15,7 @@ https://pixabay.com/vectors/flat-design-symbol-icon-www-2126877/
 https://pixabay.com/vectors/cogwheel-gear-gearwheel-cog-145804/
 https://pixabay.com/illustrations/cloud-security-internet-technology-3461414/
 
+Testing Fusion Chart: https://www.fusioncharts.com/
+
+https://inorganik.github.io/countUp.js/
 

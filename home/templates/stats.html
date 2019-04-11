@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block title %}Extremewall Statistics{% endblock %}
+
+{% block head_js %}
+<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+<script type="text/javascript" src="{% static 'js/fusioncharts.theme.candy.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/countUp.js' %}"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center mt-5">
+            <h3>March 2019 Stats</h3>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12 text-center mt-5">
+            <h5>Tickets</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 text-center mb-5">
+            <p>Average Tickets Closed Per Day</p>
+            <div id="counter">Loading...</div>
+        </div>
+        <div class="col-sm-4 text-center mb-5">
+            <p>Average Tickets Closed Week</p>
+            <div id="counter2">Loading...</div>
+        </div>
+        <div class="col-sm-4 text-center mb-5">
+            <p>Tickets Closed for Month</p>
+            <div id="counter3">Loading...</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div id="chart-2">{{ output2|safe }}</div>
+        </div>
+    </div>
+    
+    <div class="row mb-5">
+        <div class="col-sm-12 text-center mt-5">
+            <h5>Features</h5>
+        </div>
+        <div class="col-sm-12 text-center mb-5">
+            <div id="chart-1">{{ output|safe }}</div>
+        </div>
+    </div>
+   
+    
+    
+</div>
+
+<script>
+    window.onload = function(){
+        var count = new CountUp("counter", 0, 5000, 2, 5,{
+           decimal: '.', 
+        });
+        
+        var count2 = new CountUp("counter2", 0, 100, 2, 5,{
+           decimal: '.', 
+        });
+        
+        var count3 = new CountUp("counter3", 0, 200, 2, 5,{
+           decimal: '.', 
+        });
+        
+        count.start();
+        count2.start();
+        count3.start();
+    };
+    
+</script>
+
+{% endblock %}
