@@ -30,7 +30,7 @@
             <div id="counter">Loading...</div>
         </div>
         <div class="col-sm-4 text-center mb-5">
-            <p>Average Tickets Closed Week</p>
+            <p>Average Tickets Closed Per Week</p>
             <div id="counter2">Loading...</div>
         </div>
         <div class="col-sm-4 text-center mb-5">
@@ -49,6 +49,10 @@
             <h5>Features</h5>
         </div>
         <div class="col-sm-12 text-center mb-5">
+            <p>The feature we are focusing on at the moment with the most votes: </p>
+            <a href="{% url 'open_feature' votes_id %}"><span>{{ votes_name }}, with </span><span id="counter4">Loading...</span><span> votes!</span></a>
+        </div>
+        <div class="col-sm-12 text-center mb-5">
             <div id="chart-1">{{ output|safe }}</div>
         </div>
     </div>
@@ -59,21 +63,26 @@
 
 <script>
     window.onload = function(){
-        var count = new CountUp("counter", 0, 5000, 2, 5,{
+        var count = new CountUp("counter", 0, {{ averageTicketsPerDay }}, 2, 3,{
+           decimal: '.',
+        });
+        
+        var count2 = new CountUp("counter2", 0, {{ averageTicketsPerWeek }}, 2, 3,{
            decimal: '.', 
         });
         
-        var count2 = new CountUp("counter2", 0, 100, 2, 5,{
+        var count3 = new CountUp("counter3", 0, {{ closed_tickets_for_previous_month }}, 2, 3,{
            decimal: '.', 
         });
         
-        var count3 = new CountUp("counter3", 0, 200, 2, 5,{
+        var count4 = new CountUp("counter4", 0, {{ votes_total }}, 0, 3,{
            decimal: '.', 
         });
         
         count.start();
         count2.start();
         count3.start();
+        count4.start();
     };
     
 </script>

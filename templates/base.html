@@ -61,7 +61,10 @@
                         <input type="hidden">
                     </form>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'stats' %}">Stats</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'show_cart' %}">Cart</a>
                 </li>
                 {% else %}
@@ -89,6 +92,9 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item disabled" href="{% url 'add_feature' %}">Log in to Create a Feature Request</a>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'stats' %}">Stats</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'register' %}">Register</a>
