@@ -4,6 +4,7 @@ from accounts.forms import LoginForm, RegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from tickets.models import Ticket, Comments
+from features.models import Features, FeatureComments
 
 @login_required
 def logout(request):
@@ -63,6 +64,42 @@ def register(request):
 
 def profile(request):
     user = User.objects.get(email=request.user.email)
+    last_login = user.last_login
     tickets = Ticket.objects.all()
     comments = Comments.objects.all()
-    return render(request, 'profile.html', {'profile': user, 'tickets': tickets, 'comments': comments})
+    features = Features.objects.all()
+    ticketcomments = FeatureComments.objects.all()
+    featurecomments = Comments.objects.all()
+    
+    open_tickets_total = 0
+    closed_tickets_total = 0
+    open_feature_requests = 0
+    closed_feature_requests = 0
+    total_comments = 0
+    
+    for key in tickets:
+        if key.ticketusername == user:
+            if key.status == True:
+                open_tickets_total += 1
+            else:
+                closed_tickets_total += 1
+    
+    for key in features:
+        if key.featureusername == user:
+            if key.status == True:
+                open_feature_requests += 1
+            else:
+                closed_feature_requests += 1
+                
+    for key in ticketcomments:
+        if key.commentusername == user:
+            total_comments += 1
+            
+    for key in featurecomments:
+        if key.commentusername == user:
+            total_comments += 1
+            
+        
+    return render(request, 'profile.html', {'profile': user, 'tickets': tickets, 'comments': comments, 'last_login': last_login, 
+        'open_tickets_total': open_tickets_total, 'open_feature_requests': open_feature_requests, 'total_comments': total_comments,
+        'closed_tickets_total': closed_tickets_total, 'closed_feature_requests': closed_feature_requests, 'features': features})

@@ -1,55 +1,100 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+
+{% load static %}
 
 {% block content %}
 
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 text-center mt-5">
-            <h1> Welcome to your profile page {{profile.username}} </h1>
-        </div>    
-    </div>
-    <div class="row">
-        <div class="col-sm-12 text-center mt-5">
-            <h1> Here are your open tickets: </h1>
+<section id="profile">
+    <div class="container-fluid dark-overlay">
+        <div class="row">
+            <div class="col-sm-12 text-center mt-5 mb-5">
+                <h1>Welcome to Extremewall {{ profile.username }}</h1>
+                <p>Your last login was: {{ last_login }}</p>
+            </div>
         </div>
-        <div class="col-sm-12 text-center mt-5">
-            {% for ticket in tickets %}
-                {% if ticket.ticketusername == user%}
-                    {% if ticket.status == True %}
-                    <p>{{ticket}} created on {{ticket.created_date}}</p>
+        <div class="row">
+            <div class="col-sm-4 text-center mt-5">
+                <h3>Open Tickets</h3>
+                <h4>{{ open_tickets_total }}</h4>
+            </div>
+            <div class="col-sm-4 text-center mt-5">
+                <h3>Open Feature Requests</h3>
+                <h4>{{ open_feature_requests }}</h4>
+            </div>
+            <div class="col-sm-4 text-center mt-5">
+                <h3>Total Comments</h3>
+                <h4>{{ total_comments }}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 text-center text-light mt-5 mb-5">
+                <ul class="list-group">
+                    <li class="list-group-item active">Your Open Support Tickets</li>
+                    {% if open_tickets_total > 0 %}
+                        {% for ticket in tickets %}
+                            {% if ticket.ticketusername == user %}
+                                {% if ticket.status == True %}
+                                    <li class="list-group-item list-group-item-light"><a href="{% url 'show_ticket' ticket.id %}">{{ ticket.ticketname }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item list-group-item-light">You have no open support tickets</li>
                     {% endif %}
-                {% endif %}
-            {% endfor %}
-        </div>    
-    </div>
-    <div class="row">
-        <div class="col-sm-12 text-center mt-5">
-            <h1> Here are your closed tickets: </h1>
-        </div>
-        <div class="col-sm-12 text-center mt-5">
-            {% for ticket in tickets %}
-                {% if ticket.ticketusername == user%}
-                {% if ticket.status == False %}
-                    <p>{{ticket}} created on {{ticket.created_date}}</p>
+                </ul>
+            </div>
+            <div class="col-sm-6 text-center text-light mt-5 mb-5">
+                <ul class="list-group">
+                    <li class="list-group-item active">Your Closed Support Tickets</li>
+                    {% if closed_tickets_total > 0 %}
+                        {% for ticket in tickets %}
+                            {% if ticket.ticketusername == user %}
+                                {% if ticket.status == False %}
+                                    <li class="list-group-item list-group-item-light"><a href="{% url 'show_ticket' ticket.id %}">{{ ticket.ticketname }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item list-group-item-light">You have no closed support tickets</li>
                     {% endif %}
-                {% endif %}
-            {% endfor %}
-        </div>    
-    </div>
-    <div class="row">
-        <div class="col-sm-12 text-center mt-5">
-            <h1> Here are your comments on tickets: </h1>
+                </ul>
+            </div>
         </div>
-        <div class="col-sm-12 text-center mt-5">
-            {% for comment in comments %}
-                {% if comment.commentusername == user%}
-                <p>On ticket {{comment.ticket}} you posted: {{comment.comment}}</p>
-                {% endif %}
-            {% endfor %}
-        </div>   
+        <div class="row">
+            <div class="col-sm-6 text-center mt-5 mb-5">
+                <ul class="list-group">
+                    <li class="list-group-item active">Your Open Feature Requests</li>
+                    {% if open_feature_requests > 0 %}
+                        {% for feature in features %}
+                            {% if feature.featureusername == user %}
+                                {% if feature.status == True %}
+                                    <li class="list-group-item list-group-item-light"><a href="{% url 'open_feature' feature.id %}">{{ feature.featurename }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item list-group-item-light">You have no open feature requests</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-sm-6 text-center mt-5 mb-5">
+                <ul class="list-group">
+                    <li class="list-group-item active">Your Closed Feature Requests</li>
+                    {% if closed_feature_requests > 0 %}
+                        {% for feature in features %}
+                            {% if feature.featureusername == user %}
+                                {% if feature.status == False %}
+                                    <li class="list-group-item list-group-item-light"><a href="{% url 'open_feature' feature.id %}">{{ feature.featurename }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item list-group-item-light">You have no closed feature requests</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
 {% endblock %}

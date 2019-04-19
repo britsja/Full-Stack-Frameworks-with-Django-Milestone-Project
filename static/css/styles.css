@@ -3,6 +3,8 @@ html {
     position: relative;
 }
 
+/* Home Page */
+
 #home {
     position: relative;
     min-height: 500px;
@@ -38,6 +40,35 @@ html {
 .feature-image {
     max-height: 150px;
 }
+
+/* Profile Page */
+
+#profile {
+    position: relative;
+    min-height: 1000px;
+    background: url('/static/img/home.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    color: white;
+}
+
+#profile .dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 1000px;
+    width: 100%;
+    background: rgba(0,0,0,0.8);    
+}
+
+#profile li a {
+    color: #0000FF;
+}
+
+
+/* Other */
 
 .page-footer {
     min-height: 50px;
