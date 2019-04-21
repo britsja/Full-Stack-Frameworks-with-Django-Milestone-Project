@@ -8,7 +8,7 @@
         {% for item in cart_items %}
             {% if items_in_cart == 1 %}
             <div class="text-center mx-auto">
-                <div class="card" style="width: 24rem;">
+                <div class="card mx-auto h-100" style="width: 24rem;">
                     <div class="card-body">
                         <h5 class="card-title">Feature title: {{item.feature.featurename}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Feature ID: {{item.id}}</h6>
@@ -23,7 +23,7 @@
             {% elif items_in_cart == 2 %}
             <div class="mx-auto">
                 <div class="col-sm-6 text-center">
-                    <div class="card" style="width: 24rem;">
+                    <div class="card mx-auto h-100" style="width: 24rem;">
                         <div class="card-body">
                             <h5 class="card-title">Feature title: {{item.feature.featurename}}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Feature ID: {{item.id}}</h6>
@@ -38,7 +38,7 @@
             </div>
             {% else %}
             <div class="col-sm-4 text-center">
-                <div class="card" style="width: 18rem;">
+                <div class="card mx-auto h-100" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Feature title: {{item.feature.featurename}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Feature ID: {{item.id}}</h6>
