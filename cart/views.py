@@ -1,27 +1,32 @@
 from django.shortcuts import render, redirect, reverse
 
 def show_cart(request):
-    return render(request, "cart.html")
+    cart = request.session.get('cart', {})
+    items_in_cart = 0
+    for item in cart:
+        items_in_cart += 1
+    
+    return render(request, "cart.html", {"items_in_cart": items_in_cart})
 
 def add_cart(request, id):
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
+    try:
+        cart.pop(id)
+    except:
+        pass
+    
+    request.session['cart'] = cart
     cart[id] = cart.get(id, quantity)
 
     request.session['cart'] = cart
-    return render(request, "cart.html")
+    
+    return redirect("show_cart")
 
-def edit_cart(request, id):
-    quantity = int(request.POST.get('quantity'))
+
+def remove_item(request, id):
     cart = request.session.get('cart', {})
-
-    if quantity > 0:
-        cart[id] = quantity
-    else:
-        cart.pop(id)
-
+    cart.pop(id)
     request.session['cart'] = cart
-    return render(request, "cart.html")
-
-
-
+    
+    return redirect("show_cart")
