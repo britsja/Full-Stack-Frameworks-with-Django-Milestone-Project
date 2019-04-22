@@ -8,10 +8,13 @@ from calendar import monthrange
 from django.db.models import Max
 
 def index(request):
-    return render(request, 'home.html')
+    context = {"index_page":"active"}
+    return render(request, 'home.html', context)
 
 
 def stats(request):
+    
+    stats_page = "active"
     
     # Get current year
     yearInt = int(datetime.today().strftime('%Y'))
@@ -125,4 +128,4 @@ def stats(request):
     
     return render(request, 'stats.html', {'output': column2D.render(), 'output2': ticketChart.render(), 'votes_id': votes_id, 
         'votes_name': votes_name, 'votes_total': votes_total, 'averageTicketsPerDay': averageTicketsPerDay, 
-        'averageTicketsPerWeek': averageTicketsPerWeek, 'closed_tickets_for_previous_month': closed_tickets_for_previous_month}) 
+        'averageTicketsPerWeek': averageTicketsPerWeek, 'closed_tickets_for_previous_month': closed_tickets_for_previous_month, 'stats_page': stats_page}) 

@@ -52,7 +52,7 @@
             <p>The feature we are focusing on at the moment with the most votes: </p>
             <a href="{% url 'open_feature' votes_id %}"><span>{{ votes_name }}, with </span><span id="counter4">Loading...</span><span> votes!</span></a>
         </div>
-        <div class="col-sm-12 text-center mb-5">
+        <div class="col-sm-12 text-center mb-5 pb-5">
             <div id="chart-1">{{ output|safe }}</div>
         </div>
     </div>

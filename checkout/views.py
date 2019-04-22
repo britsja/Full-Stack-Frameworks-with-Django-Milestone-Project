@@ -16,6 +16,7 @@ VOTES_PER_INCREMENT = 1000
 
 @login_required()
 def checkout(request):
+    cart_page = "active"
     if request.method == "POST":
         order_form = OrderForm(request.POST)
         payment_form = PaymentForm(request.POST)
@@ -71,6 +72,6 @@ def checkout(request):
         payment_form = PaymentForm()
         order_form = OrderForm()
 
-    return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+    return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'cart_page': cart_page})
 
 

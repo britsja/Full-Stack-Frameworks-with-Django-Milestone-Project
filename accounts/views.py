@@ -14,6 +14,7 @@ def logout(request):
         return redirect(reverse('home'))
 
 def login(request):
+    login_page = "active"
     if request.user.is_authenticated:
         return redirect(reverse('profile'))
     if request.method == "POST":
@@ -33,10 +34,11 @@ def login(request):
     else:
         login_form = LoginForm()
     
-    return render(request, 'login.html', {"login_form": login_form})
+    return render(request, 'login.html', {"login_form": login_form, 'login_page': login_page})
 
 def register(request):
 
+    register_page = "active"
     if request.user.is_authenticated:
         return redirect('profile')
 
@@ -60,9 +62,10 @@ def register(request):
     else:
         registration_form = RegistrationForm()
 
-    return render(request, 'register.html', {"registration_form": registration_form})
+    return render(request, 'register.html', {"registration_form": registration_form, 'register_page': register_page})
 
 def profile(request):
+    profile_page = "active"
     user = User.objects.get(email=request.user.email)
     last_login = user.last_login
     tickets = Ticket.objects.all()
@@ -102,4 +105,4 @@ def profile(request):
         
     return render(request, 'profile.html', {'profile': user, 'tickets': tickets, 'comments': comments, 'last_login': last_login, 
         'open_tickets_total': open_tickets_total, 'open_feature_requests': open_feature_requests, 'total_comments': total_comments,
-        'closed_tickets_total': closed_tickets_total, 'closed_feature_requests': closed_feature_requests, 'features': features})
+        'closed_tickets_total': closed_tickets_total, 'closed_feature_requests': closed_feature_requests, 'features': features, 'profile_page': profile_page})

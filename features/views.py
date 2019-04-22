@@ -6,7 +6,8 @@ from datetime import datetime
 
 def show_open_features(request):
     features = Features.objects.all()
-    return render(request, 'featurerequests.html', {'features': features})
+    feature_page = "active"
+    return render(request, 'featurerequests.html', {'features': features, 'feature_page': feature_page})
 
 def show_feature(request, id):
     feature = get_object_or_404(Features, pk=id)
@@ -14,15 +15,16 @@ def show_feature(request, id):
     users = User.objects.all()
     current_user = request.user
     voted = False
+    feature_page = "active"
     if request.session.get('voted', False):
         voted = True
 
-    return render(request, "openfeature.html",{'feature': feature, 'users': users, 'current_user': current_user, 'comments': comments, 'voted': voted})
+    return render(request, "openfeature.html",{'feature': feature, 'users': users, 'current_user': current_user, 'comments': comments, 'voted': voted, 'feature_page': feature_page})
 
 def add_feature_comment(request, id):
     feature = get_object_or_404(Features, pk=id)
     current_user = request.user
-    
+    feature_page = "active"
 
     if request.method == "POST":
         form = CommentsForm(request.POST or None)
@@ -38,10 +40,11 @@ def add_feature_comment(request, id):
     else:
         form = CommentsForm(instance=feature)
 
-    return render(request, "addfeaturecomment.html",{'form': form})
+    return render(request, "addfeaturecomment.html",{'form': form, 'feature_page': feature_page})
 
 def add_feature(request):
     current_user = request.user
+    feature_page = "active"
 
     if request.method == "POST":
         form = FeaturesForm(request.POST or None)
@@ -59,7 +62,7 @@ def add_feature(request):
     else:
         form = FeaturesForm()
 
-    return render(request, "addfeature.html", {'form': form})
+    return render(request, "addfeature.html", {'form': form, 'feature_page': feature_page})
 
 def close_feature(request, id):
     feature = get_object_or_404(Features, pk=id)
@@ -79,8 +82,9 @@ def reopen_feature(request, id):
 
 def closed_features(request):
     features = Features.objects.all()
+    feature_page = "active"
 
-    return render(request, 'closedfeatures.html', {'features': features})
+    return render(request, 'closedfeatures.html', {'features': features, 'feature_page': feature_page})
 
     
 def upvote_request(request, id):
