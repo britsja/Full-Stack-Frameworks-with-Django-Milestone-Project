@@ -49,7 +49,7 @@ def checkout(request):
                 messages.error(request, "Your credit card was declined")
 
             if customer.paid:
-                messages.error(request, "You have successfully paid")
+                messages.success(request, "You have successfully paid. Thank you for purchasing upvotes!")
 
                 #Add the Votes
                 for id, quantity in cart.items():
@@ -60,7 +60,7 @@ def checkout(request):
 
                 #Continue to clear cart and move on                 
                 request.session['cart'] = {}
-                return redirect('show_open_features')
+                return redirect('payment_success')
             else:
                 messages.error(request, "Error with transaction")
 
@@ -75,3 +75,5 @@ def checkout(request):
     return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'cart_page': cart_page})
 
 
+def payment_success(request):
+    return render(request, "success.html")
