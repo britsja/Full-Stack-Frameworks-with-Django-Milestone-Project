@@ -3,20 +3,22 @@
 {% block title %}Cart Content{% endblock %}
 {% block content %}
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <div class="jumbotron">
-                <h1 class="display-4">Payment Successful</h1>
-                <p class="lead">Thank you for purchasing upvotes for the selected feature/s</p>
-                <hr class="my-4">
-                <p>Your purchase helps support future development of Extremewall and enables us to provide the firewall as a free solution to everyone</p>
-                <p class="lead">
-                <a class="btn btn-primary btn-lg" href="{% url 'show_open_features' %}" role="button">Return to the features page</a>
-                </p>
+<section id="success">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <div class="jumbotron">
+                    <h1 class="display-4">Payment Successful</h1>
+                    <p class="lead">Thank you for purchasing upvotes for the selected feature/s</p>
+                    <hr class="my-4">
+                    <p>Your purchase helps support future development of Extremewall and enables us to provide the firewall as a free solution to everyone</p>
+                    <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="{% url 'show_open_features' %}" role="button">Return to the features page</a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 {% endblock %}

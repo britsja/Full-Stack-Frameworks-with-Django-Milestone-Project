@@ -6,18 +6,19 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6 offset-3 mt-5">
-            <form method="POST">
-                {% csrf_token %}
-                {{ registration_form | as_bootstrap }}
-                <button type="submit" class="btn btn-success mt-3">Submit</button>
-            </form>
+<section id="register">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3 mt-5">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ registration_form | as_bootstrap }}
+                    <button type="submit" class="btn btn-success mt-3">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
+</section>
 
 
 {% endblock %}

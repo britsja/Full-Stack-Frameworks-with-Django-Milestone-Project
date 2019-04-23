@@ -3,26 +3,12 @@
 {% block title %}Cart Content{% endblock %}
 {% block content %}
 
-<div class="container mt-5">
-    <div class="row">
-        {% for item in cart_items %}
-            {% if items_in_cart == 1 %}
-            <div class="text-center mx-auto">
-                <div class="card mx-auto h-100" style="width: 24rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Feature title: {{item.feature.featurename}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Feature ID: {{item.id}}</h6>
-                        <p class="card-text">Votes to be purchased: {{item.votes_multiplied}}</p>
-                        <p class="card-text">Total Price: ${{item.rounded_total}}</p>
-                        <div class="text-center mt-3">
-                            <a href="{% url 'remove_item' item.id %}" class="btn btn-success" role="button">Remove item from Cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% elif items_in_cart == 2 %}
-            <div class="mx-auto">
-                <div class="col-sm-6 text-center">
+<section id="cart">
+    <div class="container mt-5">
+        <div class="row">
+            {% for item in cart_items %}
+                {% if items_in_cart == 1 %}
+                <div class="text-center mx-auto">
                     <div class="card mx-auto h-100" style="width: 24rem;">
                         <div class="card-body">
                             <h5 class="card-title">Feature title: {{item.feature.featurename}}</h5>
@@ -35,48 +21,64 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="col-sm-4 text-center">
-                <div class="card mx-auto h-100" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Feature title: {{item.feature.featurename}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Feature ID: {{item.id}}</h6>
-                        <p class="card-text">Votes to be purchased: {{item.votes_multiplied}}</p>
-                        <p class="card-text">Total Price: ${{item.rounded_total}}</p>
-                        <div class="text-center mt-3">
-                            <a href="{% url 'remove_item' item.id %}" class="btn btn-success" role="button">Remove item from Cart</a>
+                {% elif items_in_cart == 2 %}
+                <div class="mx-auto">
+                    <div class="col-sm-6 text-center">
+                        <div class="card mx-auto h-100" style="width: 24rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Feature title: {{item.feature.featurename}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Feature ID: {{item.id}}</h6>
+                                <p class="card-text">Votes to be purchased: {{item.votes_multiplied}}</p>
+                                <p class="card-text">Total Price: ${{item.rounded_total}}</p>
+                                <div class="text-center mt-3">
+                                    <a href="{% url 'remove_item' item.id %}" class="btn btn-success" role="button">Remove item from Cart</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {% else %}
+                <div class="col-sm-4 text-center">
+                    <div class="card mx-auto h-100" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Feature title: {{item.feature.featurename}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Feature ID: {{item.id}}</h6>
+                            <p class="card-text">Votes to be purchased: {{item.votes_multiplied}}</p>
+                            <p class="card-text">Total Price: ${{item.rounded_total}}</p>
+                            <div class="text-center mt-3">
+                                <a href="{% url 'remove_item' item.id %}" class="btn btn-success" role="button">Remove item from Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+    </div>
+    {% if cart_items %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a href="{% url 'checkout' %}" class="btn btn-success" role="button">Purchase Now</a>
             </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-    
-</div>
-{% if cart_items %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <a href="{% url 'checkout' %}" class="btn btn-success" role="button">Purchase Now</a>
         </div>
     </div>
-</div>
-{% else %}
-<div class="container mt-5 text-center">
-    <div class="row">
-        <div class="col-sm 12">
-            <div class="jumbotron bg-secondary">
-            <h1 class="display-4">Oh no!</h1>
-            <p class="lead">You haven't selected any features to purchase upvotes for yet!</p>
-            <hr class="my-4">
-            <p>Have a look at the open features to select a feature to give a big upvote boost</p>
-            <a class="btn btn-primary btn-lg" href="{% url 'show_open_features' %}" role="button">Open Feature Requests</a>
-        </div>
+    {% else %}
+    <div class="container mt-5 text-center">
+        <div class="row">
+            <div class="col-sm 12">
+                <div class="jumbotron bg-secondary">
+                <h1 class="display-4">Oh no!</h1>
+                <p class="lead">You haven't selected any features to purchase upvotes for yet!</p>
+                <hr class="my-4">
+                <p>Have a look at the open features to select a feature to give a big upvote boost</p>
+                <a class="btn btn-primary btn-lg" href="{% url 'show_open_features' %}" role="button">Open Feature Requests</a>
+            </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 {% endif %}
 
 {% endblock %}
