@@ -6,6 +6,8 @@
 
 {% block content %}
 
+<!-- Render the add feature form -->
+
 <section id="addfeature">
     <div class="container">
         <div class="row">
@@ -16,6 +18,7 @@
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | as_bootstrap }}
+                    <p>You can upload images to a public repository like <a href="https://imgur.com/upload" target="_blank">imgur</a> and paste the link in your description above </p>
                     <button type="submit" class="btn btn-info">Submit</button>
                 </form>
             </div>

@@ -3,6 +3,8 @@ from django.forms import Textarea
 from .models import Comments, Ticket
 from django.utils.translation import gettext_lazy as _
 
+# Views to create comment forms and ticket forms
+
 class CommentsForm(forms.ModelForm):
     class Meta:
         model = Comments

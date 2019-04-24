@@ -19,3 +19,15 @@ Testing Fusion Chart: https://www.fusioncharts.com/
 
 https://inorganik.github.io/countUp.js/
 
+
+In the admin panel:
+Once project is created, usergroup needs to be created with the name of SupportUsers
+Create support categories as required but the support website
+
+On the website - create dummy account and do the following:
+Dummy tickets and features need to be generated for the stats page to work
+
+TO DO:
+
+Link on home page to download extremewall needs to point to ISO file of Extremewall
+

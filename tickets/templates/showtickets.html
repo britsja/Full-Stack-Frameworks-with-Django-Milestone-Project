@@ -4,6 +4,7 @@
 
 {% block content %}
 
+<!-- Show all open tickets with ticket status = True -->
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-center mt-5">
@@ -22,6 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Loop through tickets that are open and display in table -->
                     {% for ticket in tickets%}
                         {% if ticket.status == True %}  
                         <tr onclick="window.location='show_ticket/{{ ticket.id }}';" class="pointer hover-highlight">
@@ -39,6 +41,7 @@
             </table>
         </div>
     </div>
+    <!-- Creating a ticket option and button only available to logged in users -->
     {% if user.is_authenticated %}
         <div class="row">
             <div class="col-sm-12 text-center mt-5">
@@ -57,8 +60,5 @@
 </div>
 <div class="pb-5 mb-5"></div>
 
-<script>
-    ScrollReveal().reveal('.reveal', { delay: 100});
-</script>
 
 {% endblock  %}

@@ -6,6 +6,7 @@ from django.contrib.auth.models import User, Group
 from tickets.models import Ticket, Comments
 from features.models import Features, FeatureComments
 
+# User can log out
 @login_required
 def logout(request):
     if request.method == 'POST':
@@ -13,10 +14,13 @@ def logout(request):
         messages.success(request, "You are logged out")
         return redirect(reverse('home'))
 
+#User can log in
 def login(request):
     login_page = "active"
     if request.user.is_authenticated:
         return redirect(reverse('profile'))
+    
+    # If user successfully logs in, redirect them to their profile page, otherwise back to login screen
     if request.method == "POST":
         login_form = LoginForm(request.POST)
 
@@ -37,7 +41,11 @@ def login(request):
     return render(request, 'login.html', {"login_form": login_form, 'login_page': login_page})
 
 def register(request):
-
+    
+    # If user successfully registers, log them in and send them to profile page.
+    # Add user to default user group: SupportUsers
+    # Display message if any error in registering
+    
     register_page = "active"
     if request.user.is_authenticated:
         return redirect('profile')
@@ -65,6 +73,10 @@ def register(request):
     return render(request, 'register.html', {"registration_form": registration_form, 'register_page': register_page})
 
 def profile(request):
+    
+    # Top area displays users' open tickets, open features and total comments
+    # Loop through tickets and features to display tickets and features open and closed belonging to user
+    
     profile_page = "active"
     user = User.objects.get(email=request.user.email)
     last_login = user.last_login

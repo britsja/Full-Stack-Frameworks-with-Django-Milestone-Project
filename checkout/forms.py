@@ -1,6 +1,7 @@
 from django import forms
 from .models import Order
 
+# Form for payment with credit card using Stripe
 class PaymentForm(forms.Form):
 
     MONTH_CHOICES = [(i ,i) for i in range(1, 13)]
@@ -11,7 +12,8 @@ class PaymentForm(forms.Form):
     expiry_month = forms.ChoiceField(label='Month', choices=MONTH_CHOICES, required=False)
     expiry_year = forms.ChoiceField(label='Year', choices=YEAR_CHOICES, required=False)
     stripe_id = forms.CharField(widget=forms.HiddenInput)
-    
+ 
+# User information form as part as processing payment   
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order

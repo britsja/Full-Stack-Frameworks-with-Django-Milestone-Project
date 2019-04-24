@@ -11,8 +11,12 @@ from features import views
 
 stripe.api_key = settings.STRIPE_SECRET
 
+# Price per vote is $0.10. Votes are sold in 1000's 
+
 VOTE_PRICE = 0.1
 VOTES_PER_INCREMENT = 1000
+
+
 
 @login_required()
 def checkout(request):
@@ -28,6 +32,7 @@ def checkout(request):
 
             cart = request.session.get('cart', {})
             total = 0
+            # Calculate the total charge
             for id, quantity in cart.items():
                 feature = get_object_or_404(Features, pk=id)
                 total += quantity * VOTE_PRICE * VOTES_PER_INCREMENT
@@ -37,7 +42,7 @@ def checkout(request):
                     quantity = quantity
                 )
                 order_line_item.save()
-
+            # Attempt to charge the user
             try:
                 customer = stripe.Charge.create(
                     amount = int(total * 100),
@@ -47,7 +52,8 @@ def checkout(request):
                 )
             except stripe.error.CardError:
                 messages.error(request, "Your credit card was declined")
-
+            
+            # If payment succeeds, add the purchased votes to the feature's total votes
             if customer.paid:
                 messages.success(request, "You have successfully paid. Thank you for purchasing upvotes!")
 
@@ -74,6 +80,6 @@ def checkout(request):
 
     return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'cart_page': cart_page})
 
-
+# Once payment is complete, direct user to a page to acknowledge it
 def payment_success(request):
     return render(request, "success.html")

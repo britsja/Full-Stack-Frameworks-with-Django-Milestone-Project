@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 
+# View for cart and returns total items in cart
 def show_cart(request):
     cart_page = "active"
     cart = request.session.get('cart', {})
@@ -9,6 +10,7 @@ def show_cart(request):
     
     return render(request, "cart.html", {"items_in_cart": items_in_cart, 'cart_page': cart_page})
 
+# Add item to cart. If same item was already in cart, remove it and add new quantity of item. If no items, catch the error when using .pop
 def add_cart(request, id):
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
@@ -24,7 +26,7 @@ def add_cart(request, id):
     
     return redirect("show_cart")
 
-
+#  Remove item and redirect back to cart page
 def remove_item(request, id):
     cart = request.session.get('cart', {})
     cart.pop(id)

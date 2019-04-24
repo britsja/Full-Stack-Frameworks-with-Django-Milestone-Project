@@ -4,6 +4,7 @@ from .forms import CommentsForm, TicketsForm
 from django.contrib.auth.models import User
 from datetime import datetime
 
+# Show open tickets and their comment totals
 def show_open_tickets(request):
     tickets = Ticket.objects.all()
     ticket_page = "active"
@@ -14,6 +15,7 @@ def show_open_tickets(request):
 
     return render(request, 'showtickets.html', {'tickets': tickets, 'ticket_page': ticket_page})
 
+# Open a ticket based on ticket id and their comments
 def show_ticket(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     comments = Comments.objects.filter(ticket = id).values()
@@ -24,6 +26,7 @@ def show_ticket(request, id):
     
     return render(request, "openticket.html",{'ticket': ticket, 'comments': comments, 'users': users, 'current_user': current_user, 'staff': staff, 'ticket_page': ticket_page})
 
+# Add comment to a ticket from ticket form
 def add_comment(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     current_user = request.user
@@ -45,7 +48,8 @@ def add_comment(request, id):
         form = CommentsForm(instance=ticket)
 
     return render(request, "addcomment.html",{'form': form, 'ticket_page': ticket_page})
-   
+  
+# Add a ticket from the ticket creation form 
 def add_ticket(request):
     category = Ticketcategory.objects.all()
     current_user = request.user
@@ -68,6 +72,7 @@ def add_ticket(request):
 
     return render(request, "addticket.html", {'form': form, 'category' : category, 'ticket_page': ticket_page})
 
+# Admin or user can close a ticket
 def close_ticket(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     ticket.status = False
@@ -77,6 +82,7 @@ def close_ticket(request, id):
     tickets = Ticket.objects.all()
     return redirect(show_open_tickets)
 
+# Admin or user can reopen a ticket
 def reopen_ticket(request, id):
     ticket = get_object_or_404(Ticket, pk=id)
     ticket.status = True
@@ -86,6 +92,7 @@ def reopen_ticket(request, id):
     tickets = Ticket.objects.all()
     return redirect(show_open_tickets)
 
+# Show list of closed tickets
 def show_closed_tickets(request):
     tickets = Ticket.objects.all()
     ticket_page = "active"

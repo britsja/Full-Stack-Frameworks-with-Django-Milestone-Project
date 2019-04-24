@@ -1,6 +1,11 @@
 from django.shortcuts import get_object_or_404
 from features.models import Features
 
+# Context file for the cart contents
+# Users select an amount in thousands to purchase. The unit price (per vote) is $0.1 which means 1000 votes will cost $100
+# Selected vote amount is multiplied by 1000 then by the unit price in order to get the total cost per item (rounded_total)
+# Combined cost of all items in cart is the combined_total
+
 def cart_contents(request):
     cart = request.session.get('cart', {})
     

@@ -3,6 +3,8 @@
 {% load bootstrap_tags %}
 {% block title %}Extremewall Statistics{% endblock %}
 
+<!-- Scripts required for FusionChart and countup scripts -->
+
 {% block head_js %}
 <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
 <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
@@ -12,6 +14,7 @@
 {% endblock %}
 
 {% block content %}
+<!-- Stats page content starts here -->
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-center mt-5">
@@ -24,6 +27,7 @@
             <h5>Tickets</h5>
         </div>
     </div>
+    <!-- Display numbered stats using countup. Loading is the default display before countup kicks in -->
     <div class="row">
         <div class="col-sm-4 text-center mb-5">
             <p>Average Tickets Closed Per Day</p>
@@ -38,6 +42,7 @@
             <div id="counter3">Loading...</div>
         </div>
     </div>
+    <!-- Render chart of Tickets closed per day in month using FusionCharts -->
     <div class="row">
         <div class="col-sm-12 text-center">
             <div id="chart-2">{{ output2|safe }}</div>
@@ -52,6 +57,7 @@
             <p>The feature we are focusing on at the moment with the most votes: </p>
             <a href="{% url 'open_feature' votes_id %}"><span>{{ votes_name }}, with </span><span id="counter4">Loading...</span><span> votes!</span></a>
         </div>
+        <!-- Render chart of open features and votes per feature using FusionCharts -->
         <div class="col-sm-12 text-center mb-5 pb-5">
             <div id="chart-1">{{ output|safe }}</div>
         </div>
@@ -61,6 +67,7 @@
     
 </div>
 
+<!-- Scripts for the countup feature. This counts from 0 to the int amount of the variable -->
 <script>
     window.onload = function(){
         var count = new CountUp("counter", 0, {{ averageTicketsPerDay }}, 2, 3,{

@@ -4,6 +4,7 @@
 
 {% block content %}
 
+<!-- Open ticket by id and display ticket information and comments -->
 <div class="container">
     <div class="row mt-5">
         <div class="col-sm-12 text-center">
@@ -61,10 +62,13 @@
             <h3>Ticket Comments: </h3>
         </div>
         <div class="ticket col-sm-12 mt-5">
+            <!-- Allow logged in users to add a comment -->
             {% if comments %}
                 {% for comment in comments %}
                     {% for user in users%}
                         {% if comment.commentusername_id == user.id %}
+                            <!-- For every second comment, change the color to make it easier on the eyes -->
+                            <!-- If user that commented was a staff member, display comment in different color -->
                             {% if forloop.parentloop.counter|divisibleby:2 %}
                                <div class="card mb-2 comments">
                                     {% if user in staff %}
@@ -108,10 +112,12 @@
                     {% endfor %}    
                 {% endfor %}
             {% else %}
+            <!-- If no comments on ticket, display message to state it -->
             <p>There are no comments on this ticket yet</p>
             {% endif %}
         </div>  
     </div>
+    <!-- Option to add comment only available to logged in users -->
     {% if user.is_authenticated %}
         {% if ticket.status == True%}
         <div class="row">
