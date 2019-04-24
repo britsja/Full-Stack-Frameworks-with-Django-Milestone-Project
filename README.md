@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/britsja/Full-Stack-Frameworks-with-Django-Milestone-Project.svg?branch=master)](https://travis-ci.org/britsja/Full-Stack-Frameworks-with-Django-Milestone-Project)
 
 "# Full-Stack-Frameworks-with-Django-Milestone-Project" 
 
