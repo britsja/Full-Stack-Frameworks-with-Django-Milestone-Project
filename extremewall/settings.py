@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-# Environment variables
-import env
+# Environment variables. Commenting out env for Heroku deployment
+# import env
 # Charts for the stats page
 import fusioncharts
 
