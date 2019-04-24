@@ -2,11 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 
-# class Ticket_username(models.Model):
-#     name = models.CharField(max_length=30)
+class Ticket_username(models.Model):
+    name = models.CharField(max_length=30)
     
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name
 
 class Ticketcategory(models.Model):
     name = models.CharField(max_length=30)
