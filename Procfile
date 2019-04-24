@@ -1,0 +1,1 @@
+web: gunicorn extremewall.wsgi:application
