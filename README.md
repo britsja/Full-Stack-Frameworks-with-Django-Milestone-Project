@@ -93,22 +93,22 @@ Manual website testing was conducted to ensure the functionality of the site and
 Testing conducted were as follows:
 
 1. Home Page:
-    1.1 Page opened, scrolled to bottom and tested on different screen sizes using Chrome Dev Tools 
+    - Page opened, scrolled to bottom and tested on different screen sizes using Chrome Dev Tools 
 
 2. Tickets:
-    2.1  Tested if user isn't logged in, menu item to create a new support ticket is greyed out with message that login is required
-    2.2  On "Show Open Tickets" page, tested if user isn't logged in, text is displayed below tickets that login is required to create a ticket
-    2.3  On the "Show Open Tickets" page, ensures that only open tickets are displayed and only closed tickets on the "Show Closed Tickets" page
-    2.4  Entering the page of an open ticket, tested that no option is there to add a comment for users that are not logged in
-    2.5  Tested that if user is logged in, a user can create a ticket from the top dropdown menu or from the "Show Open Tickets" page.
-    2.6  Created a ticket as a logged in user and it displays in the "Show Open Tickets" Page
-    2.7  Tested being able to create a comment on an open ticket as a logged in user
-    2.8  Checked that "Close Ticket" option is available as user that created the ticket and that it closes the ticket and displays it in the 
+    -  Tested if user isn't logged in, menu item to create a new support ticket is greyed out with message that login is required
+    -  On "Show Open Tickets" page, tested if user isn't logged in, text is displayed below tickets that login is required to create a ticket
+    -  On the "Show Open Tickets" page, ensures that only open tickets are displayed and only closed tickets on the "Show Closed Tickets" page
+    -  Entering the page of an open ticket, tested that no option is there to add a comment for users that are not logged in
+    -  Tested that if user is logged in, a user can create a ticket from the top dropdown menu or from the "Show Open Tickets" page.
+    -  Created a ticket as a logged in user and it displays in the "Show Open Tickets" Page
+    -  Tested being able to create a comment on an open ticket as a logged in user
+    -  Checked that "Close Ticket" option is available as user that created the ticket and that it closes the ticket and displays it in the 
          "Show Closed Tickets" page.
-    2.9  Tested that as original ticket creator, a closed ticket can be reopened if users' problem hasn't been resolved
-    2.10 As a logged in user that didn't create the ticket, they can't close the open ticket and can't reopen the closed ticket.
-    2.11 Any logged in user can comment on a ticket regardless if they created the ticket or not, as long as the ticket is open.
-    2.12 Logged in user or guest users can't comment on closed tickets
+    -  Tested that as original ticket creator, a closed ticket can be reopened if users' problem hasn't been resolved
+    -  As a logged in user that didn't create the ticket, they can't close the open ticket and can't reopen the closed ticket.
+    -  Any logged in user can comment on a ticket regardless if they created the ticket or not, as long as the ticket is open.
+    -  Logged in user or guest users can't comment on closed tickets
     
 3. Features:
     3.1  Tested if user isn't logged in, menu item to create a new feature request is greyed out with message that login is required
@@ -179,7 +179,7 @@ Testing conducted were as follows:
 
 10. Bugs discovered during testing:
     10.1 The console was printing out a print statement from the checkout views which was removed
-    10.2 The checkout page gave an error when a rejected test card was used. Card error was also not displaying. Fixed at 9.8 above
+    10.2 The checkout page gave an error when a rejected test card was used. Card error was also not displaying. Corrected as above in checkout section.
     10.3 Debug mode was still enabled in the settings.py which was changed to False after testing the checkout page
 
 
