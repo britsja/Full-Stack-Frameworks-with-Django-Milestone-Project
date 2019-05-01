@@ -7,6 +7,9 @@ and the option to purhcase upvotes in order to boost feature development priorit
 
 To provide transparency, the stats page shows the tickets completed in the previous month and the feature currently being worked on based on the votes it received.
 
+The deployed project can be accessed on heroku at the following link: <a href="https://extremewall.herokuapp.com">https://extremewall.herokuapp.com</a>
+
+#
 
 ### **Table of Contents**
 
@@ -22,6 +25,7 @@ To provide transparency, the stats page shows the tickets completed in the previ
 
 [Deployment](#deployment)
 
+#
  
 ### User Experience
  
@@ -36,6 +40,8 @@ Extremewall company would like their users to have the following experience on t
 - Logged in users should additionally be able to purchase upvotes for features to prioritise it's development
 - A stats page will give the user the ability to see about tickets and features that are open or completed.
 
+
+
 ### Features
 
 - Home Page - Users get a general overview of the product and the option to download it.
@@ -47,11 +53,13 @@ Extremewall company would like their users to have the following experience on t
 - Cart - Purchased upvotes of features are added to the cart prior to checking out and paying.
 - Checkout - All items in cart can be purchased and purchased votes will be added to the respective features on completion of the transaction through Stripe
 
+
 ### Features Left to Implement
 - On the home page - Provide a working link to download the Extremewall ISO file for product installation.
 - On Tickets pages - Determine if users prefer uploading screenshots when logging support tickets and implement S3 storage for images.
 - Stats Page - give users the option to display stats based on previous months too
 - Social media icons in the footer of all pages need to be linked to correct social media pages
+
 
 ### Technologies Used
 
