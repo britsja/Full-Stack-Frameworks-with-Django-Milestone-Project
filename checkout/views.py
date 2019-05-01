@@ -54,24 +54,24 @@ def checkout(request):
                 messages.error(request, "Your credit card was declined")
             
             # If payment succeeds, add the purchased votes to the feature's total votes
-            if customer.paid:
-                messages.success(request, "You have successfully paid. Thank you for purchasing upvotes!")
-
-                #Add the Votes
-                for id, quantity in cart.items():
-                    feature = get_object_or_404(Features, pk=id)
-                    votes = quantity * 1000
-                    feature.upvotes += votes
-                    feature.save()
-
-                #Continue to clear cart and move on                 
-                request.session['cart'] = {}
-                return redirect('payment_success')
             else:
-                messages.error(request, "Error with transaction")
+                if customer.paid:
+                    messages.success(request, "You have successfully paid. Thank you for purchasing upvotes!")
+    
+                    #Add the Votes
+                    for id, quantity in cart.items():
+                        feature = get_object_or_404(Features, pk=id)
+                        votes = quantity * 1000
+                        feature.upvotes += votes
+                        feature.save()
+    
+                    #Continue to clear cart and move on                 
+                    request.session['cart'] = {}
+                    return redirect('payment_success')
+                else:
+                    messages.error(request, "Error with transaction")
 
         else:
-            print(payment_form.errors)
             messages.error(request, "Error in taking payment from specified card")
 
     else:

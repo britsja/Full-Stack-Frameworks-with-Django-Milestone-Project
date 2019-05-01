@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 # Environment variables. Commenting out env for Heroku deployment
+
+# Testing to see if I can detect if os.environ works else use env file
+
 # import env
 # Charts for the stats page
 import fusioncharts
@@ -34,7 +37,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['project4-janbrits.c9users.io', 'extremewall.herokuapp.com']
 
@@ -100,8 +103,17 @@ WSGI_APPLICATION = 'extremewall.wsgi.application'
 # }
 
 # Database entry changed to os environment to allow for heroku deployment
-DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL')) }
-
+# DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL')) }
+if "DATABASE_URL" in os.environ:
+    DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL')) }
+else:
+    print("DB not found in os environ, using SQLite instead")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -152,3 +164,5 @@ STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 
 #For the django-heroku package to work:
 django_heroku.settings(locals())
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
