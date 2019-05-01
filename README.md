@@ -1,4 +1,4 @@
-<a href="https://extremewall.herokuapp.com"><img src="https://github.com/britsja/Full-Stack-Frameworks-with-Django-Milestone-Project/blob/master/Extremewall.png" title="Extremewall" alt ="Extremewall"></a>
+<center><a href="https://extremewall.herokuapp.com"><img src="https://github.com/britsja/Full-Stack-Frameworks-with-Django-Milestone-Project/blob/master/Extremewall.png" title="Extremewall" alt ="Extremewall"></a></center>
 
 # Extremewall Support Site - Full Stack Frameworks with Django Milestone Project  
 
@@ -188,3 +188,8 @@ Testing conducted were as follows:
 
 ### Deployment
 
+``` Testing code clock ```
+
+``` more code ```
+``` second line of code ```
+    
