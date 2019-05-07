@@ -188,7 +188,6 @@ Testing conducted were as follows:
 
 ### Deployment
 
-``` Testing code block ```
 
 To desploy the project to Heroku, the following steps were taken:
 
@@ -196,16 +195,16 @@ To desploy the project to Heroku, the following steps were taken:
 - On the heroku app page under Resources, added Postgres under the Add-ons secion
 - Copied the DATABASE_URL from the heroku Config Vars to use in the settings.py
 - On the development platform (C9), used the following command to use the Heroku PostgreSQL:
-    ```pip install dj-database-url```
-    ```pip install psycopg2```
+    - ```pip install dj-database-url```
+    - ```pip install psycopg2```
 - Install the webserver that is required by Heroku
-    ```pip install gunicorn```
+    - ```pip install gunicorn```
 - Create a Procfile file in the root of the project and add the following line to the file:
-    ```web: gunicorn extremewall.wsgi:application```
+    - ```web: gunicorn extremewall.wsgi:application```
 - Capture all the installed applications into the requirements.txt file:
-    ```pip freeze > requirements.txt```
+    - ```pip freeze > requirements.txt```
 - In the settings.py, added the import entry near the top of the file:
-    ```import dj_database_url```
+    - ```import dj_database_url```
 - Changed the DATABASES entry in the settings.py to display the following:
     ```
     if "DATABASE_URL" in os.environ:
@@ -220,29 +219,29 @@ To desploy the project to Heroku, the following steps were taken:
         }
     ```
 - Removed the following entry in the settings.py:
-    ```import env```
+    - ```import env```
 - Added the heroku app URL to the allowed hosts in the settings.py:
-    ```ALLOWED_HOSTS = ['extremewall.herokuapp.com']```
+    - ```ALLOWED_HOSTS = ['extremewall.herokuapp.com']```
 - The following entries were taken from the env.py and inserted into the Config Vars of the project on Heroku:
     -   SECRET_KEY
     -   STRIPE_PUBLISHABLE
     -   STRIPE_SECRET
 - Created the database tables etc on Heroku with the following commands in the terminal on the development platform:
-    ```python manage.py makemigrations```
-    ```python manage.py migrate```
+    - ```python manage.py makemigrations```
+    - ```python manage.py migrate```
 - Created the superuser once the database migrations are complete on the Heroku PostgreSQL:
-    ```python manage.py createsuperuser```
+    - ```python manage.py createsuperuser```
 - In order to test on the local development environment, added the following entries and their values to the .bashrc file:
     - DATABASE_URL
     - SECRET_KEY
     - STRIPE_PUBLISHABLE
     - STRIPE_SECRET
 - Run the server and test if project is connected to Heroku's PostgreSQL which on Cloud 9 is:
-    ```python manage.py runserver $IP:$PORT```
+    - ```python manage.py runserver $IP:$PORT```
 - Once tested and working, start moving the project files to Heroku
 - Sync the changed files to GitHub before being deployed to Heroku:
-    ```git add .```
-    ```git commit -m "Changes made for Heroku deployment"```
+    - ```git add .```
+    - ```git commit -m "Changes made for Heroku deployment"```
 - On the heroku app dashboard, opened the 'Deploy' tab and selected GitHub under Deployment Method
 - In the 'Connect to GitHub' area underneath the Deployment Method, search for the github repository matching the project
 - Click the connect button on the correct project
