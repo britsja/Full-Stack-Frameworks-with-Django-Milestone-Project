@@ -1,4 +1,6 @@
-<center><a href="https://extremewall.herokuapp.com"><img src="https://github.com/britsja/Full-Stack-Frameworks-with-Django-Milestone-Project/blob/master/Extremewall.png" title="Extremewall" alt ="Extremewall"></a></center>
+<p align="center">
+    <a href="https://extremewall.herokuapp.com"><img src="https://github.com/britsja/Full-Stack-Frameworks-with-Django-Milestone-Project/blob/master/Extremewall.png" title="Extremewall" alt ="Extremewall"></a>
+</p>
 
 # Extremewall Support Site - Full Stack Frameworks with Django Milestone Project  
 
@@ -247,3 +249,17 @@ To desploy the project to Heroku, the following steps were taken:
 - Click the connect button on the correct project
 - In the 'Manual Deployment' section, clicked on the 'Deploy Branch' button
 
+To clone this project before following the steps to deploy it to Heroku, you can use the following command:
+    - ```git clone https://github.com/britsja/Full-Stack-Frameworks-with-Django-Milestone-Project.git```
+
+### Credits
+
+**Media** 
+- Google Image Search for images used in this project with reuse rights.
+
+**Code**
+- InfoSoft Global Private Limited for the Fusion Charts code used for creating the charts in this project.
+- Jamie Perkins from inorganik Produce for the countup code used in numeric counting display of stats.
+
+**Inspiration**
+- Code Institute for providing the knowledge and challenge in creating this project.
