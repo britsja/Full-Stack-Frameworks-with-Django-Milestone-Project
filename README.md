@@ -187,6 +187,8 @@ Testing conducted were as follows:
     - Debug mode was still enabled in the settings.py which was changed to False after testing the checkout page
     - The stats page displayed a static month (March) instead of previous month
     - The tickets stats chart also displayed the incorrect information. Code was adding up ticket by month instead of by day of month.
+    - On the stats page, the hyperlink and description of feature currently worked on, is displaying a feature with the most votes whether the feature
+        request is open or closed. It should only show the feature request with the most votes that are still open
 
 #
 

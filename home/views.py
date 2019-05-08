@@ -127,9 +127,9 @@ def stats(request):
     
     #Highest upvotes for features
     
-    most_voted_id = Features.objects.values('id').order_by('-upvotes').first()
-    most_votes_name = Features.objects.values('featurename').order_by('-upvotes').first()
-    most_votes = Features.objects.values('upvotes').order_by('-upvotes').first()
+    most_voted_id = Features.objects.values('id').exclude(status='False').order_by('-upvotes').first()
+    most_votes_name = Features.objects.values('featurename').exclude(status='False').order_by('-upvotes').first()
+    most_votes = Features.objects.values('upvotes').exclude(status='False').order_by('-upvotes').first()
     votes_name = most_votes_name['featurename']
     votes_total = int(most_votes['upvotes'])
     votes_id = int(most_voted_id['id'])
