@@ -5,7 +5,7 @@
 # Extremewall Support Site - Full Stack Frameworks with Django Milestone Project  
 
 The Extremewall support site intends to provide support to users of the Extremewall Firewall. The site also offers the opportunity to request features that users would like implemented
-and the option to purhcase upvotes in order to boost feature development priority.
+and the option to purchase upvotes in order to boost feature development priority.
 
 To provide transparency, the stats page shows the tickets completed in the previous month and the feature currently being worked on based on the votes it received.
 
@@ -135,7 +135,7 @@ Testing conducted were as follows:
 
 4. Stats:
     -  Stats from the previous month shows as three columns of numbers: "Average Tickets Closed Per Day", "Average Tickets Closed Per Week" and
-          "Tickts Closed for Month"
+          "Tickets Closed for Month"
     -  Chart will display the total amount of tickets closed daily for the previous month
     -  The feature with the most upvotes displays as a clickable link that takes the user to the specified feature request
     -  A chart displays the total votes each of the open feature requests has.
@@ -154,7 +154,7 @@ Testing conducted were as follows:
     -  Once the user successfully logs in, they are directed to the profile page.
 
 7. Profile:
-    -  Once logged in using the login page, a user is directed to their profile page. The page is also accessable from the menu once logged in.
+    -  Once logged in using the login page, a user is directed to their profile page. The page is also accessible from the menu once logged in.
     -  The username should show next to the welcome message and the last login time of the user must show below it in date and time format.
     -  The three number columns should show the total Open Tickets, Open Feature Requests and Total Comments that belong to the logged in user.
     -  The Tickets tables should show the open and closed tickets belonging to the user. The tickets should be clickable and open the specific ticket.
@@ -200,7 +200,7 @@ Testing conducted were as follows:
 To desploy the project to Heroku, the following steps were taken:
 
 - Created the application on Heroku and called it: extremewall
-- On the heroku app page under Resources, added Postgres under the Add-ons secion
+- On the heroku app page under Resources, added Postgres under the Add-ons section
 - Copied the DATABASE_URL from the heroku Config Vars to use in the settings.py
 - On the development platform (C9), used the following command to use the Heroku PostgreSQL:
     - ```pip install dj-database-url```
