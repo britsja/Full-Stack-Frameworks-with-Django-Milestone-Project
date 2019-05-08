@@ -74,8 +74,8 @@ def stats(request):
     
     ticketsDatesSource['data'] = []
     
-    # Stats for March 2019
-    daysInMonth = monthrange(2019, 3)
+    # Stats for month in year
+    daysInMonth = monthrange(prevMonthYear, prevMonth)
     
    
     for i in range(1, daysInMonth[1] + 1):
@@ -89,7 +89,7 @@ def stats(request):
             time2 = key.closed_date
             
             if time2:
-                dayClosed = int(time2.strftime("%m"))
+                dayClosed = int(time2.strftime("%d"))
                 strDayClosed = str(dayClosed)
                 
                 if data['label'] == strDayClosed:

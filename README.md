@@ -185,6 +185,8 @@ Testing conducted were as follows:
     - The console was printing out a print statement from the checkout views which was removed
     - The checkout page gave an error when a rejected test card was used. Card error was also not displaying. Corrected as above in checkout section.
     - Debug mode was still enabled in the settings.py which was changed to False after testing the checkout page
+    - The stats page displayed a static month (March) instead of previous month
+    - The tickets stats chart also displayed the incorrect information. Code was adding up ticket by month instead of by day of month.
 
 #
 
