@@ -94,7 +94,7 @@ def stats(request):
                 dayClosed = int(time2.strftime("%d"))
                 strDayClosed = str(dayClosed)
                 
-                if yearClosed == prevMonthYear && monthClosed == prevMonth:
+                if yearClosed == prevMonthYear and monthClosed == prevMonth:
                     if data['label'] == strDayClosed:
                         value = data['value']
                         value += 1
