@@ -57,7 +57,7 @@
             <!-- Check if there are open feature requests before displaying the information about highest voted one -->
             {% if votes_name == False %}
                 <p>There are no open feature requests at the moment</p>
-                <a href="{% url 'add_ticket' %}">Open a feature request here</a>
+                <a href="{% url 'add_feature' %}">Open a feature request here</a>
             {% else %}
                 <p>The feature we are focusing on at the moment with the most votes: </p>
                 <a href="{% url 'open_feature' votes_id %}"><span>{{ votes_name }}, with </span><span id="counter4">Loading...</span><span> votes!</span></a>
