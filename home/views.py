@@ -89,13 +89,16 @@ def stats(request):
             time2 = key.closed_date
             
             if time2:
+                yearClosed = int(time2.strftime("%Y"))
+                monthClosed = int(time2.strftime("%m"))
                 dayClosed = int(time2.strftime("%d"))
                 strDayClosed = str(dayClosed)
                 
-                if data['label'] == strDayClosed:
-                    value = data['value']
-                    value += 1
-                    data['value'] = value
+                if yearClosed == prevMonthYear && monthClosed == prevMonth
+                    if data['label'] == strDayClosed:
+                        value = data['value']
+                        value += 1
+                        data['value'] = value
                     
         ticketsDatesSource['data'].append(data)
         

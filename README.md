@@ -190,6 +190,7 @@ Testing conducted were as follows:
     - On the stats page, the hyperlink and description of feature currently worked on, is displaying a feature with the most votes whether the feature
         request is open or closed. It should only show the feature request with the most votes that are still open
     - After changes above, when closing a feature request, error on stats page: NoneType object is not subscriptable
+    - Stats page - The ticket closed chart displayed all closed tickets regardless of month.
 
 #
 
