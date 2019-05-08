@@ -6,6 +6,7 @@ from tickets.models import *
 from datetime import datetime
 from calendar import monthrange
 from django.db.models import Max
+import calendar
 
 def index(request):
     context = {"index_page":"active"}
@@ -28,8 +29,16 @@ def stats(request):
     else:
         prevMonth = monthInt - 1
         
+    # Get year date of previous month
+    if prevMonth == 12:
+        prevMonthYear = yearInt - 1
+    else:
+        prevMonthYear = yearInt
+        
+    prevMonthName = calendar.month_name[prevMonth] 
+        
     # Total number of days in previous month
-    daysInPreviousMonth = monthrange(yearInt, prevMonth)[1]
+    daysInPreviousMonth = monthrange(prevMonthYear, prevMonth)[1]
     
     # Chart 1 - Feature by upvotes
     dataSource = {}
@@ -128,4 +137,5 @@ def stats(request):
     
     return render(request, 'stats.html', {'output': column2D.render(), 'output2': ticketChart.render(), 'votes_id': votes_id, 
         'votes_name': votes_name, 'votes_total': votes_total, 'averageTicketsPerDay': averageTicketsPerDay, 
-        'averageTicketsPerWeek': averageTicketsPerWeek, 'closed_tickets_for_previous_month': closed_tickets_for_previous_month, 'stats_page': stats_page}) 
+        'averageTicketsPerWeek': averageTicketsPerWeek, 'closed_tickets_for_previous_month': closed_tickets_for_previous_month, 'stats_page': stats_page,
+        'prevMonthName': prevMonthName, 'prevMonthYear': prevMonthYear}) 
