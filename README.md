@@ -222,6 +222,8 @@ To desploy the project to Heroku, the following steps were taken:
     ```
 - Removed the following entry in the settings.py:
     - ```import env```
+- Changed the Debug setting for deployment:
+    - ```DEBUG = False```
 - Added the heroku app URL to the allowed hosts in the settings.py:
     - ```ALLOWED_HOSTS = ['extremewall.herokuapp.com']```
 - The following entries were taken from the env.py and inserted into the Config Vars of the project on Heroku:
@@ -249,7 +251,7 @@ To desploy the project to Heroku, the following steps were taken:
 - Click the connect button on the correct project
 - In the 'Manual Deployment' section, clicked on the 'Deploy Branch' button
 
-To clone this project before following the steps to deploy it to Heroku, you can use the following command:
+To clone this project before following the steps above to deploy it to Heroku, you can use the following command:
     - ```git clone https://github.com/britsja/Full-Stack-Frameworks-with-Django-Milestone-Project.git```
 
 ### Credits
