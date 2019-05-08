@@ -125,15 +125,18 @@ def stats(request):
     column2D = FusionCharts("column2D", "ex1" , "800", "350", "chart-1", "json", dataSource)
     ticketChart = FusionCharts("column2D", "ex2" , "800", "350", "chart-2", "json", ticketsDatesSource)
     
-    #Highest upvotes for features
-    
-    most_voted_id = Features.objects.values('id').exclude(status='False').order_by('-upvotes').first()
-    most_votes_name = Features.objects.values('featurename').exclude(status='False').order_by('-upvotes').first()
-    most_votes = Features.objects.values('upvotes').exclude(status='False').order_by('-upvotes').first()
-    votes_name = most_votes_name['featurename']
-    votes_total = int(most_votes['upvotes'])
-    votes_id = int(most_voted_id['id'])
-    print(votes_id, votes_name, votes_total)
+    #Highest upvotes for features if there any open features, else template will show message that no open features with votes
+    try:
+        most_voted_id = Features.objects.values('id').exclude(status='False').order_by('-upvotes').first()
+        most_votes_name = Features.objects.values('featurename').exclude(status='False').order_by('-upvotes').first()
+        most_votes = Features.objects.values('upvotes').exclude(status='False').order_by('-upvotes').first()
+        votes_name = most_votes_name['featurename']
+        votes_total = int(most_votes['upvotes'])
+        votes_id = int(most_voted_id['id'])
+    except:
+        votes_id = False
+        votes_name = False
+        votes_total = False
     
     return render(request, 'stats.html', {'output': column2D.render(), 'output2': ticketChart.render(), 'votes_id': votes_id, 
         'votes_name': votes_name, 'votes_total': votes_total, 'averageTicketsPerDay': averageTicketsPerDay, 
