@@ -258,6 +258,7 @@ To desploy the project to Heroku, the following steps were taken:
 - Sync the changed files to GitHub before being deployed to Heroku:
     - ```git add .```
     - ```git commit -m "Changes made for Heroku deployment"```
+    - ```git push```
 - On the heroku app dashboard, opened the 'Deploy' tab and selected GitHub under Deployment Method
 - In the 'Connect to GitHub' area underneath the Deployment Method, search for the github repository matching the project
 - Click the connect button on the correct project
