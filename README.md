@@ -181,7 +181,13 @@ Testing conducted were as follows:
             After the payment fails, user is directed back to the checkout page, displayed the error and given the opportunity to attempt it again.
     -  Tested that purchased upvotes is added to successful payment from checkout and not on failure of payment
 
-10. Bugs discovered during testing:
+10. Browsers:
+    - Tested site on both Chrome and Firefox web browsers
+
+11. Responsiveness
+    -   Used chrome developer tools to test site responsiveness in various display sizes
+
+12. Bugs discovered during testing:
     - The console was printing out a print statement from the checkout views which was removed
     - The checkout page gave an error when a rejected test card was used. Card error was also not displaying. Corrected as above in checkout section.
     - Debug mode was still enabled in the settings.py which was changed to False after testing the checkout page
@@ -259,6 +265,13 @@ To desploy the project to Heroku, the following steps were taken:
 
 To clone this project before following the steps above to deploy it to Heroku, you can use the following command:
     - ```git clone https://github.com/britsja/Full-Stack-Frameworks-with-Django-Milestone-Project.git```
+    
+In the admin panel:
+- Once project is created, usergroup needs to be created with the name of SupportUsers
+- Create support categories as required but the support website
+
+On the website - create dummy account and do the following:
+- Dummy tickets and features need to be generated for the stats page to work
 
 ### Credits
 
